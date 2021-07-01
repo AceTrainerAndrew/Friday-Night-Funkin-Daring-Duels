@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="gfDanceTitle.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Symbol 20000" x="0" y="0" width="687" height="663" frameX="-29" frameY="-20" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20001" x="0" y="0" width="687" height="663" frameX="-29" frameY="-20" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20002" x="687" y="0" width="698" height="659" frameX="-19" frameY="-25" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20003" x="687" y="0" width="698" height="659" frameX="-19" frameY="-25" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20004" x="1385" y="0" width="717" height="669" frameX="-4" frameY="-15" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20005" x="2102" y="0" width="717" height="669" frameX="-4" frameY="-15" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20006" x="2819" y="0" width="730" height="683" frameX="-2" frameY="-2" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20007" x="0" y="683" width="730" height="683" frameX="-2" frameY="-2" frameWidth="732" frameHeight="685"/>
+	<SubTexture name="Symbol 20008" x="730" y="683" width="732" height="685"/>
+	<SubTexture name="Symbol 20009" x="730" y="683" width="732" height="685"/>
+	<SubTexture name="Symbol 20010" x="730" y="683" width="732" height="685"/>
+	<SubTexture name="Symbol 20011" x="730" y="683" width="732" height="685"/>
+	<SubTexture name="Symbol 20012" x="730" y="683" width="732" height="685"/>
+	<SubTexture name="Symbol 20013" x="730" y="683" width="732" height="685"/>
+</TextureAtlas>
