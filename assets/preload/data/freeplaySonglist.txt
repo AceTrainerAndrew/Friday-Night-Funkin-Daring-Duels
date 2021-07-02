@@ -1,6 +1,6 @@
 Tutorial:gf:1
-agoti-but-ace:ace:6
-test:ace:1
+agoti-but-ace:ace:7
+test:ace:7
 Bopeebo:dad:1
 Fresh:dad:1
 Dadbattle:dad:1
@@ -21,6 +21,6 @@ siu:senpai:6
 blade-trap:ace:6
 long-wired-brawl:ace:6
 corrupt:acespiritduo:6
-metal-fanged:luna:7
+metal-fanged:luna:8
 
 

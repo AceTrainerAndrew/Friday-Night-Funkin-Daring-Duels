@@ -525,9 +525,9 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Pico Left', 24, false);
 				animation.addByPrefix('singRIGHT', 'Pico Right', 24, false);
 				
-				addOffset('idle');
+				addOffset('idle', 0, 15);
 				addOffset("singUP", -29, 43);
-				addOffset("singRIGHT", 95, -7);
+				addOffset("singRIGHT", 75, -7);
 				addOffset("singLEFT", -25, 9);
 				addOffset("singDOWN", 200, -70);
 				flipX = true;
