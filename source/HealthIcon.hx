@@ -42,6 +42,7 @@ class HealthIcon extends FlxSprite
 		animation.add('cb', [26, 27], 0, false, isPlayer);
 		animation.add('acespiritduo', [28, 29], 0, false, isPlayer);
 		animation.add('luna', [30, 31], 0, false, isPlayer);
+		animation.add('luigi', [32, 33], 0, false, isPlayer);		
 		animation.play(char);
 
 		switch(char)

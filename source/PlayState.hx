@@ -1052,6 +1052,9 @@ class PlayState extends MusicBeatState
 			case "luna":
 				dad.y -= 150;
 				dad.x -= 175;
+			case 'luigi':
+				camPos.x += 600;
+				dad.y += 300;
 		}
 
 

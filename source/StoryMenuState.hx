@@ -31,7 +31,7 @@ class StoryMenuState extends MusicBeatState
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['siu', 'blade-trap', 'long-wired-brawl', 'corrupt'],
-		['test','agoti-but-ace']
+		['bopeebo-old','test','agoti-but-ace']
 	];
 	var curDifficulty:Int = 1;
 
