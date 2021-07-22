@@ -46,6 +46,9 @@ class DialogueBox extends FlxSpriteGroup
 			case 'long-wired-brawl':
 				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'agoti-but-ace':
+				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'corrupt':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -78,7 +81,7 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('dialogueBox-pixel','week2');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'blade-trap','long-wired-brawl','corrupt':
+			case 'blade-trap','long-wired-brawl','corrupt','agoti-but-ace':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBoxace');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
@@ -129,7 +132,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 		}
-		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl')
+		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'agoti-but-ace')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/acePortrait');

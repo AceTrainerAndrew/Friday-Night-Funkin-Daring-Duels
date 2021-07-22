@@ -68,7 +68,8 @@ using StringTools;
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState = null;
-
+	public var minusHealth:Bool = false; // poison thingy var
+	public var islwb:Bool = false; // fuck it
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -81,6 +82,9 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+	
+	var godMoveSh:Bool = false;
+	var sh_r:Float = 600;
 
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
@@ -253,6 +257,8 @@ class PlayState extends MusicBeatState
 		PlayStateChangeables.scrollSpeed = FlxG.save.data.scrollSpeed;
 		PlayStateChangeables.botPlay = FlxG.save.data.botplay;
 
+		islwb = (SONG.song.toLowerCase() == 'long-wired-brawl' || SONG.song.toLowerCase() == 'agoti-but-ace'); // my ass
+		minusHealth = false; 
 
 		// pre lowercasing the song name (create)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
@@ -366,6 +372,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('blade-trap/bladetrapDialogue'));
 			case 'long-wired-brawl':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('long-wired-brawl/lwbDialogue'));
+			case 'agoti-but-ace':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('agoti-but-ace/abaDialogue'));
 			case 'corrupt':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('corrupt/corruptDialogue'));
 			case 'outage':
@@ -382,7 +390,7 @@ class PlayState extends MusicBeatState
 				case 3: stageCheck = 'philly';
 				case 4: stageCheck = 'limo';
 				case 5: if (songLowercase == 'winter-horrorland') {stageCheck = 'mallEvil';} else {stageCheck = 'mall';}
-				case 6: if (songLowercase == 'corrupt') {stageCheck = 'AcesHouseEvil';} else {stageCheck = 'AcesHouse';}
+				case 6: if (songLowercase == 'agoti-but-ace') {stageCheck = 'AcesHouseEvil';} else {stageCheck = 'AcesHouse';}
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
@@ -894,16 +902,16 @@ class PlayState extends MusicBeatState
 					 defaultCamZoom = 0.9;
 
 					var bgSky = new FlxSprite().loadGraphic(Paths.image('weeb/weebSky','week6'));
-					bgSky.scrollFactor.set(0.1, 0.1);
-					add(bgSky);
+					bgSky.scrollFactor.set(0.6, 0.90);
+					//add(bgSky);
 
 					var repositionShit = -200;
 
-					var bgSchool:FlxSprite = new FlxSprite(repositionShit, 0).loadGraphic(Paths.image('treeforestBG'));
+					var bgSchool:FlxSprite = new FlxSprite(repositionShit, 0).loadGraphic(Paths.image('treeforestBG','week6'));
 					bgSchool.scrollFactor.set(0.6, 0.90);
 					add(bgSchool);
 
-					var bgStreet:FlxSprite = new FlxSprite(repositionShit).loadGraphic(Paths.image('treeforestFG'));
+					var bgStreet:FlxSprite = new FlxSprite(repositionShit).loadGraphic(Paths.image('treeforestFG','week6'));
 					bgStreet.scrollFactor.set(0.8, 0.8);
 					add(bgStreet);
 
@@ -1040,12 +1048,14 @@ class PlayState extends MusicBeatState
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case  'ace':
-				dad.y += 285;
-				camPos.x -=100;
-
-				//dad.x -= 400;
-				//dad.y -= 250;
+				//dad.y += 285;
+				//camPos.x -= 100;
+				dad.y += 50;
+				dad.x += 10;
+				camPos.set(dad.getGraphicMidpoint().x + 200, dad.getGraphicMidpoint().y);
 			case "cb":
+				dad.y += 350;
+			case "andrew":
 				dad.y += 350;
 			case "acespiritduo":
 				dad.y += 50;
@@ -1055,7 +1065,13 @@ class PlayState extends MusicBeatState
 			case 'luigi':
 				camPos.x += 600;
 				dad.y += 300;
-		}
+			case  'shadow-ace':
+				dad.y += 285;
+				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'luna-duo':
+				dad.x -= 600;
+				dad.y -= 350;
+		}		
 
 
 		
@@ -1084,12 +1100,19 @@ class PlayState extends MusicBeatState
 				if(FlxG.save.data.distractions){
 				// trailArea.scrollFactor.set();
 				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
+				add(evilTrail);
 				// evilTrail.changeValuesEnabled(false, false, false, false);
 				// evilTrail.changeGraphic()
-				add(evilTrail);
 				// evilTrail.scrollFactor.set(1.1, 1.1);
 				}
 				boyfriend.y += 80;
+			case 'TreeForest':
+				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069); 
+				
+				if (songLowercase == 'test')
+				{
+					add(evilTrail);
+				}
 		}
 
 		add(gf);
@@ -1200,13 +1223,75 @@ class PlayState extends MusicBeatState
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		switch (dad.curCharacter)
+		{
+		  case 'ace':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFFffd700, 0xFF31b0d1); // gold
+		    // healthBar for ace
+		    add(healthBar);
+		  }
+		   case 'acespiritduo':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFF000000, 0xFF31b0d1); // dark red
+		    // healthBar for acespritduo
+		    add(healthBar);
+		  }
+		  
+		   case 'andrew':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFF000000, 0xFF31b0d1); // dark red
+		    // healthBar for andrew
+		    add(healthBar);
+		  }
+		  
+		  case 'cb':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFF00008b, 0xFF31b0d1); // dark blue
+		    // healthBar for acespritduo
+		    add(healthBar);
+		  }
+		  
+		  case 'gf':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFFa5004d, 0xFF31b0d1);
+		    // healthBar for gf
+		    add(healthBar);
+		  }
+		  default:
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFFFF0000, 0xFF31b0d1);
+		    // healthBar if none of the cases above is true
+		    add(healthBar);
+		  }
+		}
+
+		
+	/*	healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
 		add(healthBar);
-
+	*/
 		// Add Kade Engine watermark
 		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -1321,6 +1406,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'corrupt':
 					schoolIntro(doof);
+				case 'agoti-but-ace':
+					schoolIntro(doof);
 				case 'outage':
 					schoolIntro(doof);
 				default:
@@ -1348,8 +1435,11 @@ class PlayState extends MusicBeatState
 		black.scrollFactor.set();
 		add(black);
 
-		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
+		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31); //Cutscene for Corrupt
 		red.scrollFactor.set();
+
+		var gold:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFffd700); //Cutscene for Blade Trap
+		gold.scrollFactor.set();
 
 		var senpaiEvil:FlxSprite = new FlxSprite();
 		senpaiEvil.frames = Paths.getSparrowAtlas('weeb/senpaiCrazy','week6');
@@ -1358,18 +1448,31 @@ class PlayState extends MusicBeatState
 		senpaiEvil.scrollFactor.set();
 		senpaiEvil.updateHitbox();
 		senpaiEvil.screenCenter();
-
-		if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'roses' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'siu' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'blade-trap' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'long-wired-brawl' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'corrupt')
+		
+		var aceEvil:FlxSprite = new FlxSprite();
+		aceEvil.frames = Paths.getSparrowAtlas('weeb/aceCrazy','week6');
+		aceEvil.animation.addByPrefix('idle', 'AceCutscene00', 24, false);
+		aceEvil.setGraphicSize(Std.int(aceEvil.width * 2.5));
+		aceEvil.scrollFactor.set();
+		aceEvil.updateHitbox();
+		aceEvil.screenCenter();
+		
+		if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'roses' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'siu' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'blade-trap' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'long-wired-brawl' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'corrupt' || StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'agoti-but-ace')
 		{
 			remove(black);
 
-			if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'corrupt')
+			if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'corrupt') //Cutscene for Corrupt
 			{
 				add(red);
 			}
+			
+/*			if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'blade-trap') //Cutscene for Blade Trap
+			{
+				add(gold);
+			}
 		}
-
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		*/}
+		new FlxTimer().start(0.3, function(tmr:FlxTimer) 
 		{
 			black.alpha -= 0.15;
 
@@ -1413,7 +1516,39 @@ class PlayState extends MusicBeatState
 							}
 						});
 					}
-					else
+	/*				if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'blade-trap')
+					{
+						add(aceEvil);
+						aceEvil.alpha = 0;
+						new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
+						{
+							aceEvil.alpha += 0.15;
+							if (aceEvil.alpha < 1)
+							{
+								swagTimer.reset();
+							}
+							else
+							{
+								aceEvil.animation.play('idle');
+								FlxG.sound.play(Paths.sound('ACE_CUTSCENE'), 1, false, null, true, function()
+								{
+									remove(aceEvil);
+									remove(gold);
+									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
+									{
+										add(dialogueBox);
+									}, true);
+								});
+								new FlxTimer().start(3.2, function(deadTime:FlxTimer)
+								{
+									FlxG.camera.fade(FlxColor.WHITE, 1.6, false);
+								});
+							}
+						});
+					}
+					else if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() != 'blade-trap' && (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() != 'corrupt'))
+	
+*/						else if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() != 'corrupt')
 					{
 						add(dialogueBox);
 					}
@@ -1622,7 +1757,7 @@ class PlayState extends MusicBeatState
 		// Song check real quick
 		switch(curSong)
 		{
-			case 'Bopeebo' | 'Philly Nice' | 'Blammed' | 'Cocoa' | 'Eggnog' | 'siu' | 'blade-trap' | 'long-wired-brawl': allowedToHeadbang = true;
+			case 'Bopeebo' | 'Philly Nice' | 'Blammed' | 'Cocoa' | 'Eggnog' | 'siu': allowedToHeadbang = true;
 			default: allowedToHeadbang = false;
 		}
 
@@ -2007,6 +2142,14 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
+		if (islwb && storyDifficulty > 0 && minusHealth) // shitty regen effect
+		{
+			if (health > 0)
+			{
+				health -= 0.001;
+			}
+		}
+		
 		if (PlayStateChangeables.botPlay && FlxG.keys.justPressed.ONE)
 			camHUD.visible = !camHUD.visible;
 
@@ -2403,6 +2546,10 @@ class PlayState extends MusicBeatState
 					case 'senpai-angry':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;
+					case 'ace':
+						camFollow.y = dad.getMidpoint().y - 100;
+						camFollow.x = dad.getMidpoint().x - 25;
+						FlxTween.tween(FlxG.camera, {zoom: 1.1}, (Conductor.stepCrochet * 4 / 2000), {ease: FlxEase.elasticInOut});
 				}
 
 				if (dad.curCharacter == 'mom')
@@ -2470,7 +2617,24 @@ class PlayState extends MusicBeatState
 					// FlxG.switchState(new TitleState());
 			}
 		}
-
+		
+		if (curSong == 'long-wired-brawl')
+		{
+			switch (curStep)
+			{
+				case 770:
+				minusHealth = false;
+			}
+		}
+		
+		if (curSong == 'agoti-but-ace')
+		{
+			switch (curStep)
+			{
+				case 1255:
+				minusHealth = false;
+			}
+		}
 		if (curSong == 'Bopeebo')
 		{
 			switch (curBeat)
@@ -2631,7 +2795,12 @@ class PlayState extends MusicBeatState
 							camZooming = true;
 
 						var altAnim:String = "";
-	
+						
+						if (SONG.song == 'long-wired-brawl' || SONG.song == 'agoti-but-ace')
+
+						minusHealth = true; // i shat my pants
+
+						
 						if (SONG.notes[Math.floor(curStep / 16)] != null)
 						{
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
@@ -3700,6 +3869,9 @@ class PlayState extends MusicBeatState
 
 				note.rating = Ratings.CalculateRating(noteDiff);
 
+				minusHealth = false; // monky
+				
+				
 				if (note.rating == "miss")
 					return;	
 

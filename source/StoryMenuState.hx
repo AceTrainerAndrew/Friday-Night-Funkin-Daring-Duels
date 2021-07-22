@@ -30,8 +30,8 @@ class StoryMenuState extends MusicBeatState
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['siu', 'blade-trap', 'long-wired-brawl', 'corrupt'],
-		['bopeebo-old','test','agoti-but-ace']
+		['siu', 'blade-trap', 'long-wired-brawl', 'agoti-but-ace'],
+		['bopeebo-old','test']
 	];
 	var curDifficulty:Int = 1;
 
@@ -55,7 +55,7 @@ class StoryMenuState extends MusicBeatState
 		"PICO",
 		"MOMMY MUST MURDER",
 		"RED SNOW",
-		"THE Daring Duel",
+		"Crowned",
 		"Xtra"
 	];
 

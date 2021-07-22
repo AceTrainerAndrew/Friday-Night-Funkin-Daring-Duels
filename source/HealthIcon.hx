@@ -24,7 +24,7 @@ class HealthIcon extends FlxSprite
 		animation.add('pico', [4, 5], 0, false, isPlayer);
 		animation.add('mom', [6, 7], 0, false, isPlayer);
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
-		animation.add('tankman', [8, 9], 0, false, isPlayer);
+		animation.add('aceman', [8, 9], 0, false, isPlayer);
 		animation.add('face', [10, 11], 0, false, isPlayer);
 		animation.add('dad', [12, 13], 0, false, isPlayer);
 		animation.add('senpai', [22, 22], 0, false, isPlayer);
@@ -40,9 +40,14 @@ class HealthIcon extends FlxSprite
 		animation.add('ace', [24, 25], 0, false, isPlayer);
 		animation.add('senpaihd', [22, 22], 0, false, isPlayer);
 		animation.add('cb', [26, 27], 0, false, isPlayer);
-		animation.add('acespiritduo', [28, 29], 0, false, isPlayer);
+		animation.add('acespiritduo', [23, 23], 0, false, isPlayer);
 		animation.add('luna', [30, 31], 0, false, isPlayer);
-		animation.add('luigi', [32, 33], 0, false, isPlayer);		
+		animation.add('luigi', [32, 33], 0, false, isPlayer);
+		animation.add('picoremastered', [4, 5], 0, false, isPlayer);
+		animation.add('andrew', [34, 35], 0, false, isPlayer);
+		animation.add('shadow-ace', [36, 36], 0, false, isPlayer);
+		animation.add('luna-duo', [37, 38], 0, false, isPlayer);
+
 		animation.play(char);
 
 		switch(char)

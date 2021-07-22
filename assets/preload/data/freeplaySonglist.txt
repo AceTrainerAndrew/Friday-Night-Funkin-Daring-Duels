@@ -1,6 +1,5 @@
 Tutorial:gf:1
-agoti-but-ace:ace:7
-test:ace:7
+test:andrew:7
 bopeebo-old:luigi:7
 Bopeebo:dad:1
 Fresh:dad:1
@@ -21,6 +20,7 @@ Winter-Horrorland:monster-christmas:5
 siu:senpai:6
 blade-trap:ace:6
 long-wired-brawl:ace:6
+agoti-but-ace:ace:7
 corrupt:acespiritduo:6
 metal-fanged:luna:8
 
