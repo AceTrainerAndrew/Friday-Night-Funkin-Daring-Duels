@@ -85,6 +85,8 @@ class PlayState extends MusicBeatState
 	
 	var godMoveSh:Bool = false;
 	var sh_r:Float = 600;
+	var totalDamageTaken:Float = 0;
+	var interupt = false;
 
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
@@ -120,7 +122,12 @@ class PlayState extends MusicBeatState
 
 	public var strumLine:FlxSprite;
 	private var curSection:Int = 0;
-
+	
+	var ace:Character;
+	var isace:Bool = false;
+	var isbf:Bool = false;
+	var isdad:Bool = false;
+	
 	private var camFollow:FlxObject;
 
 	private static var prevCamFollow:FlxObject;
@@ -1071,6 +1078,8 @@ class PlayState extends MusicBeatState
 			case 'luna-duo':
 				dad.x -= 600;
 				dad.y -= 350;
+			case 'aceman':
+				dad.y += 275;
 		}		
 
 
@@ -1114,13 +1123,18 @@ class PlayState extends MusicBeatState
 					add(evilTrail);
 				}
 		}
-
+		
+		ace = new Character(175, 100, 'ace');
+		
 		add(gf);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
-
+		
+		if (SONG.song == 'test' && dad.curCharacter == 'luna')
+			add(ace);
+	
 		add(dad);
 		add(boyfriend);
 		if (loadRep)
@@ -1833,53 +1847,55 @@ class PlayState extends MusicBeatState
 		{
 			var coolSection:Int = Std.int(section.lengthInSteps / 4);
 
-			for (songNotes in section.sectionNotes)
-			{
-				var daStrumTime:Float = songNotes[0] + FlxG.save.data.offset + songOffset;
-				if (daStrumTime < 0)
-					daStrumTime = 0;
-				var daNoteData:Int = Std.int(songNotes[1] % 4);
-
-				var gottaHitNote:Bool = section.mustHitSection;
-
-				if (songNotes[1] > 3)
+for (songNotes in section.sectionNotes)
 				{
-					gottaHitNote = !section.mustHitSection;
-				}
-
-				var oldNote:Note;
-				if (unspawnNotes.length > 0)
-					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
-				else
-					oldNote = null;
-
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
-				swagNote.sustainLength = songNotes[2];
-				swagNote.scrollFactor.set(0, 0);
-
+					var daStrumTime:Float = songNotes[0] + FlxG.save.data.offset + songOffset;
+					if (daStrumTime < 0)
+						daStrumTime = 0;
+					var daNoteData:Int = Std.int(songNotes[1] % 4);
+ 
+					var gottaHitNote:Bool = section.mustHitSection;
+ 
+					if (songNotes[1] > 3)
+					{
+						gottaHitNote = !section.mustHitSection;
+					}
+ 
+					var oldNote:Note;
+					if (unspawnNotes.length > 0)
+						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
+					else
+						oldNote = null;
+ 
+					var daType = songNotes[3];
+					var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, daType);
+					swagNote.sustainLength = songNotes[2];
+ 
+					swagNote.scrollFactor.set(0, 0);	
+ 
 				var susLength:Float = swagNote.sustainLength;
-
+ 
 				susLength = susLength / Conductor.stepCrochet;
 				unspawnNotes.push(swagNote);
-
+ 
 				for (susNote in 0...Math.floor(susLength))
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
-
+ 
 					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
-
+ 
 					sustainNote.mustPress = gottaHitNote;
-
+ 
 					if (sustainNote.mustPress)
 					{
 						sustainNote.x += FlxG.width / 2; // general offset
 					}
 				}
-
+ 
 				swagNote.mustPress = gottaHitNote;
-
+ 
 				if (swagNote.mustPress)
 				{
 					swagNote.x += FlxG.width / 2; // general offset
@@ -1890,6 +1906,7 @@ class PlayState extends MusicBeatState
 			}
 			daBeats += 1;
 		}
+ 
 
 		// trace(unspawnNotes.length);
 		// playerCounter += 1;
@@ -2818,6 +2835,14 @@ class PlayState extends MusicBeatState
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
 						}
+					
+						var dadsdir:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
+						
+						if (isace)
+						{
+							ace.playAnim('sing' + dadsdir[daNote.noteData], true);
+							ace.holdTimer = 0;
+						}
 						
 						if (FlxG.save.data.cpuStrums)
 						{
@@ -2856,6 +2881,15 @@ class PlayState extends MusicBeatState
 						daNote.destroy();
 					}
 
+			
+									
+					if (FlxG.save.data.downscroll)
+							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));	
+						else
+							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));
+						
+						daNote.y -= (daNote.burning ? ((curStage != 'auditorHell' && FlxG.save.data.downscroll) ? 185 : 65 ) : 0);
+					
 					if (daNote.mustPress && !daNote.modifiedByLua)
 					{
 						daNote.visible = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].visible;
@@ -2892,26 +2926,13 @@ class PlayState extends MusicBeatState
 							}
 							else
 							{
-								if (loadRep && daNote.isSustainNote)
-								{
-									// im tired and lazy this sucks I know i'm dumb
-									if (findByTime(daNote.strumTime) != null)
-										totalNotesHit += 1;
-									else
+								if (daNote.noteType == 1 || daNote.noteType == 0)
 									{
 										health -= 0.075;
 										vocals.volume = 0;
 										if (theFunne)
 											noteMiss(daNote.noteData, daNote);
 									}
-								}
-								else
-								{
-									health -= 0.075;
-									vocals.volume = 0;
-									if (theFunne)
-										noteMiss(daNote.noteData, daNote);
-								}
 							}
 		
 							daNote.visible = false;
@@ -3137,42 +3158,69 @@ class PlayState extends MusicBeatState
 
 			var daRating = daNote.rating;
 
-			switch(daRating)
+		switch(daRating)
 			{
-				case 'shit':
-					score = -300;
-					combo = 0;
-					misses++;
-					health -= 0.2;
-					ss = false;
-					shits++;
-					if (FlxG.save.data.accuracyMod == 0)
-						totalNotesHit += 0.25;
-				case 'bad':
-					daRating = 'bad';
-					score = 0;
-					health -= 0.06;
-					ss = false;
-					bads++;
-					if (FlxG.save.data.accuracyMod == 0)
-						totalNotesHit += 0.50;
-				case 'good':
-					daRating = 'good';
-					score = 200;
-					ss = false;
-					goods++;
-					if (health < 2)
-						health += 0.04;
-					if (FlxG.save.data.accuracyMod == 0)
-						totalNotesHit += 0.75;
-				case 'sick':
-					if (health < 2)
-						health += 0.1;
-					if (FlxG.save.data.accuracyMod == 0)
-						totalNotesHit += 1;
-					sicks++;
+					case 'shit':
+						if (daNote.noteType == 2)
+							{
+								health -= 0.5;
+							}
+						if (daNote.noteType == 1 || daNote.noteType == 0)
+							{
+								score = -300;
+								combo = 0;
+								misses++;
+								health -= 0.2;
+								ss = false;
+								shits++;
+								if (FlxG.save.data.accuracyMod == 0)
+									totalNotesHit += 0.25;
+							}
+					case 'bad':
+						if (daNote.noteType == 2)
+							{
+								health -= 0.5;
+							}
+						if (daNote.noteType == 1 || daNote.noteType == 0)
+							{
+								daRating = 'bad';
+								score = 0;
+								health -= 0.06;
+								ss = false;
+								bads++;
+								if (FlxG.save.data.accuracyMod == 0)
+									totalNotesHit += 0.50;
+							}
+					case 'good':
+						if (daNote.noteType == 2)
+							{
+								health -= 0.5;
+							}
+						if (daNote.noteType == 1 || daNote.noteType == 0)
+							{
+								daRating = 'good';
+								score = 200;
+								ss = false;
+								goods++;
+								if (health < 2)
+									health += 0.04;
+								if (FlxG.save.data.accuracyMod == 0)
+									totalNotesHit += 0.75;
+							}
+					case 'sick':
+						if (daNote.noteType == 2)
+							{
+								health -= 10;
+							}
+						if (daNote.noteType == 1 || daNote.noteType == 0)
+							{
+								if (health < 2)
+									health += 0.1;
+								if (FlxG.save.data.accuracyMod == 0)
+									totalNotesHit += 1;
+								sicks++;	
+							}					
 			}
-
 			// trace('Wife accuracy loss: ' + wife + ' | Rating: ' + daRating + ' | Score: ' + score + ' | Weight: ' + (1 - wife));
 
 			if (daRating != 'shit' || daRating != 'bad')
@@ -3737,8 +3785,10 @@ class PlayState extends MusicBeatState
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
 
-			switch (direction)
+			if (isbf)
 			{
+				switch (direction)
+				{
 				case 0:
 					boyfriend.playAnim('singLEFTmiss', true);
 				case 1:
@@ -3747,7 +3797,10 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('singUPmiss', true);
 				case 3:
 					boyfriend.playAnim('singRIGHTmiss', true);
+				}
 			}
+			
+			
 
 			#if windows
 			if (luaModchart != null)
@@ -3909,6 +3962,19 @@ class PlayState extends MusicBeatState
 							boyfriend.playAnim('singLEFT', true);
 					}
 		
+					var sDir:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
+					
+					if (isbf)
+					{
+						boyfriend.playAnim('sing' + sDir[note.noteData], true);
+						boyfriend.holdTimer = 0;
+					}
+					if (isace)
+					{
+						ace.playAnim('sing' + sDir[note.noteData], true);
+						ace.holdTimer = 0;
+					}
+
 					#if windows
 					if (luaModchart != null)
 						luaModchart.executeState('playerOneSing', [note.noteData, Conductor.songPosition]);
@@ -4045,6 +4111,28 @@ class PlayState extends MusicBeatState
 
 	var danced:Bool = false;
 
+	function resetCharacter():Void
+	{
+		isbf = false;
+		isdad = false;
+		isace = false;
+	}
+	
+	function switchCharacter(characters:String):Void
+	{
+		switch(characters)
+		{
+			case 'bf':
+				isbf = true;
+			case 'ace':
+				isace = true;
+			case 'dad':
+				isdad = true;
+		}
+	}
+	
+	var stepOfLast = 0;
+	
 	override function stepHit()
 	{
 		super.stepHit();
@@ -4088,6 +4176,26 @@ class PlayState extends MusicBeatState
 		DiscordClient.changePresence(detailsText + " " + SONG.song + " (" + storyDifficultyText + ") " + Ratings.GenerateLetterRank(accuracy), "Acc: " + HelperFunctions.truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC,true,  songLength - Conductor.songPosition);
 		#end
 
+		if (curStage == 'stage' && curStep != stepOfLast)
+		{
+			switch (curStep)
+			{
+				case 0:
+					resetCharacter();
+					switchCharacter('ace');
+				case 75:
+					resetCharacter();
+					switchCharacter('dad');
+				case 150:
+					resetCharacter();
+					switchCharacter('ace');
+				case 225:
+					resetCharacter();
+					switchCharacter('dad');
+			}
+			stepOfLast = curStep;
+		}
+		
 	}
 
 	var lightningStrikeBeat:Int = 0;

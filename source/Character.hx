@@ -780,18 +780,52 @@ class Character extends FlxSprite
 			case 'aceman':
 				frames = Paths.getSparrowAtlas('aceman/Tankman');
 				
-				animation.addByPrefix('idle', 'Idle', 24, false);
+/*				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'Sing Up', 24, false);
 				animation.addByPrefix('singDOWN', 'Sing Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Sing Left', 24, false);
 				animation.addByPrefix('singRIGHT', 'Sing Right', 24, false);
 				animation.addByPrefix('hey', 'Ugh', 24, false);
 				
-				addOffset("singUP", 0, 15);
-				addOffset("singDOWN", 0, -85);
+				addOffset("singUP", 0, 35);
+				addOffset("singDOWN", -25, -85);
+*/
+				
+				animation.addByPrefix('idle', "Pico Idle Dance", 24);
+				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+				if (isPlayer)
+				{
+					animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'Pico Note Right Miss', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
+				}
+				else
+				{
+					// Need to be flipped! REDO THIS LATER!
+					animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+					animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
+				}
+
+				animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
+				animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -29, 27);
+				addOffset("singRIGHT", -68, -7);
+				addOffset("singLEFT", 65, 9);
+				addOffset("singDOWN", 200, -70);
+				addOffset("singUPmiss", -19, 67);
+				addOffset("singRIGHTmiss", -60, 41);
+				addOffset("singLEFTmiss", 62, 64);
+				addOffset("singDOWNmiss", 210, -28);
 
 				playAnim('idle');
-				
+
+				flipX = true;				
 		}
 
 		dance();

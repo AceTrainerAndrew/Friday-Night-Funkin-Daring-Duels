@@ -1,97 +1,4 @@
 package;
-
-import Section.SwagSection;
-import haxe.Json;
-import haxe.format.JsonParser;
-import lime.utils.Assets;
-
-using StringTools;
-
-typedef SwagSong =
-{
-	var song:String;
-	var notes:Array<SwagSection>;
-	var bpm:Float;
-	var needsVoices:Bool;
-	var speed:Float;
-
-	var player1:String;
-	var player2:String;
-	var gfVersion:String;
-	var noteStyle:String;
-	var stage:String;
-	var validScore:Bool;
-}
-
-class Song
-{
-	public var song:String;
-	public var notes:Array<SwagSection>;
-	public var bpm:Float;
-	public var needsVoices:Bool = true;
-	public var speed:Float = 1;
-
-	public var player1:String = 'bf';
-	public var player2:String = 'dad';
-	public var gfVersion:String = '';
-	public var noteStyle:String = '';
-	public var stage:String = '';
-
-	public function new(song, notes, bpm)
-	{
-		this.song = song;
-		this.notes = notes;
-		this.bpm = bpm;
-	}
-
-	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
-	{
-		trace(jsonInput);
-
-		// pre lowercasing the folder name
-		var folderLowercase = StringTools.replace(folder, " ", "-").toLowerCase();
-		switch (folderLowercase) {
-			case 'dad-battle': folderLowercase = 'dadbattle';
-			case 'philly-nice': folderLowercase = 'philly';
-		}
-		
-		trace('loading ' + folderLowercase + '/' + jsonInput.toLowerCase());
-
-		var rawJson = Assets.getText(Paths.json(folderLowercase + '/' + jsonInput.toLowerCase())).trim();
-
-		while (!rawJson.endsWith("}"))
-		{
-			rawJson = rawJson.substr(0, rawJson.length - 1);
-			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
-		}
-
-		// FIX THE CASTING ON WINDOWS/NATIVE
-		// Windows???
-		// trace(songData);
-
-		// trace('LOADED FROM JSON: ' + songData.notes);
-		/* 
-			for (i in 0...songData.notes.length)
-			{
-				trace('LOADED FROM JSON: ' + songData.notes[i].sectionNotes);
-				// songData.notes[i].sectionNotes = songData.notes[i].sectionNotes
-			}
-
-				daNotes = songData.notes;
-				daSong = songData.song;
-				daBpm = songData.bpm; */
-
-		return parseJSONshit(rawJson);
-	}
-
-	public static function parseJSONshit(rawJson:String):SwagSong
-	{
-		var swagShit:SwagSong = cast Json.parse(rawJson).song;
-		swagShit.validScore = true;
-		return swagShit;
-	}
-}
-package;
 import Section.SwagSection;
 import flixel.FlxState;
 import Song.SwagSong;
@@ -110,7 +17,7 @@ import flixel.util.FlxTimer;
 
 class SelectState extends MusicBeatState
 {
-	var menuItems:Array<String> = ['FNF'];
+	var menuItems:Array<String> = ['ACE'];
 	
 	
 	var curSelected:Int = 0;
@@ -127,8 +34,7 @@ class SelectState extends MusicBeatState
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 	var alreadySelectedShit:Bool = false;
 
-	var remixNames:Array<String> = [
-		"FRIDAY NIGHT FUNKIN"];
+	var remixNames:Array<String> = ['DO NOT CHOOSE THIS'];
 
 	
 
@@ -140,17 +46,18 @@ class SelectState extends MusicBeatState
 		add(menuBG);
 
 	//	if(sys.FileSystem.isDirectory('assets/data/b-blammed')){
-			menuItems.push('PTR');
-			remixNames.push('PARAPPA THE RAPPER');
 	//	}
+
+		menuItems.push('NORMAL');
+		remixNames.push('ACEMAN');
 		
 		//if(sys.FileSystem.isDirectory('assets/data/u-satin-panties')){
-		menuItems.push('PTR2');
-		remixNames.push('PARAPPA THE RAPPER 2');
+		menuItems.push('NORMAL');
+		remixNames.push('ACEMAN');
 
 
-		menuItems.push('VSPARAPPA');
-		remixNames.push('VS PARAPPA');
+		menuItems.push('ACEMAN');
+		remixNames.push('NORMAL');
 		
 	//	}
 	
@@ -172,7 +79,7 @@ class SelectState extends MusicBeatState
 
 		txtDescription = new FlxText(FlxG.width * 0.075, menuBG.y + 200, 0, "", 32);
 		txtDescription.alignment = CENTER;
-		txtDescription.setFormat("assets/fonts/vcr.ttf", 32);
+		txtDescription.setFormat("assets/fonts/FridayNightFunkin-Regular.ttf", 32);
 		txtDescription.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 1.5, 1);
 		txtDescription.color = FlxColor.WHITE;
 		add(txtDescription);
@@ -185,7 +92,7 @@ class SelectState extends MusicBeatState
 		remixCharacter.antialiasing = true;
 		add(remixCharacter);
 
-		var remixSelHeaderText:Alphabet = new Alphabet(0, 50, 'SELECT GAME', true, false);
+		var remixSelHeaderText:Alphabet = new Alphabet(0, 50, 'SELECT MODE', true, false);
 		remixSelHeaderText.screenCenter(X);
 		add(remixSelHeaderText);
 
@@ -227,7 +134,7 @@ class SelectState extends MusicBeatState
 					changeSelection(1);
 				}
 		
-				if (accepted && menuItems[curSelected] != 'VSPARAPPA' && menuItems[curSelected] != 'PTR2')
+				if (accepted && menuItems[curSelected] != 'CAPTIAN' && menuItems[curSelected] != 'ZMODE')
 				{
 					alreadySelectedShit = true;
 					var daSelected:String = menuItems[curSelected];
@@ -238,23 +145,34 @@ class SelectState extends MusicBeatState
 		
 					switch (daSelected)
 					{
-						case "FNF":
+						case "NORMAL":
 							FlxG.sound.play(Paths.sound('confirmMenu'));
 							
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							
 							new FlxTimer().start(0.7, function(tmr:FlxTimer)
 							{
-								FlxG.switchState(new DisclaimerState());
+								FlxG.switchState(new StoryMenuState());
 								
 							});
-						case "PTR":
+						case "ACEMAN":
 							FlxG.sound.play(Paths.sound('confirmMenu'));
 							
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(0.7, function(tmr:FlxTimer)
 							{
-								FlxG.switchState(new StoryMenuState1());
+							//	FlxG.switchState(new StoryMenuState1());
+							FlxG.switchState(new StoryMenuState());
+							
+							});
+                       /* case "CAPTIAN":
+							FlxG.sound.play(Paths.sound('confirmMenu'));
+							
+							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
+							new FlxTimer().start(0.7, function(tmr:FlxTimer)
+							{
+								//FlxG.switchState(new StoryMenuState2());
+								FlxG.switchState(new StoryMenuState());
 							
 							});
 						/*
@@ -327,8 +245,8 @@ class SelectState extends MusicBeatState
 
 		switch (daSelected)
 		{
-			case "FNF":
-				remixCharacter.loadGraphic(Paths.image('gameSelect/fnf'));
+			case "NORMAL":
+				remixCharacter.loadGraphic(Paths.image('gameSelect/ptr'));
 				remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .65));
 				remixCharacter.updateHitbox();
 				remixCharacter.screenCenter();
@@ -336,8 +254,8 @@ class SelectState extends MusicBeatState
 				
 				
 				
-			case "PTR":
-				remixCharacter.loadGraphic(Paths.image('gameSelect/ptr'));
+			case "ACEMAN":
+				remixCharacter.loadGraphic(Paths.image('gameSelect/fnf'));
 				remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .65));
 				remixCharacter.offset.x += 130;
 				remixCharacter.updateHitbox();
@@ -345,22 +263,14 @@ class SelectState extends MusicBeatState
 				menuBG.loadGraphic(Paths.image('gameSelect/bg'));
 				
 			
-			case "PTR2":
+			/*case "CAPTIAN":
 			remixCharacter.loadGraphic(Paths.image('gameSelect/ptr2'));
 			remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .50));
 			remixCharacter.updateHitbox();
 			remixCharacter.offset.y -= 90;
 			remixCharacter.offset.x -= 80;
 			menuBG.loadGraphic(Paths.image('gameSelect/bg'));
-			
-			case "VSPARAPPA":
-			remixCharacter.loadGraphic(Paths.image('gameSelect/vsparappa'));
-			remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .50));
-			remixCharacter.updateHitbox();
-			remixCharacter.offset.y -= 90;
-			remixCharacter.offset.x -= 80;
-			menuBG.loadGraphic(Paths.image('gameSelect/bg'));
-					
+			*/	
 				
 				
 				
