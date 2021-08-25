@@ -30,8 +30,8 @@ class StoryMenuState extends MusicBeatState
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['siu', 'blade-trap', 'long-wired-brawl', 'agoti-but-ace'],
-		['bopeebo-old','test']
+		['blade-trap', 'long-wired-brawl', 'scythe','corrupt'],
+		['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing']
 	];
 	var curDifficulty:Int = 1;
 
@@ -261,7 +261,7 @@ class StoryMenuState extends MusicBeatState
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(new SelectState());
 		}
 
 		super.update(elapsed);
@@ -280,7 +280,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('bfConfirm');
+				grpWeekCharacters.members[1].animation.play('parappaConfirm');
 				stopspamming = true;
 			}
 
@@ -288,28 +288,26 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
+			var diffic = "";
+
+			switch (curDifficulty)
+			{
+				case 0:
+					diffic = '-easy';
+				case 2:
+					diffic = '-hard';
+			}
 
 			PlayState.storyDifficulty = curDifficulty;
 
-			// adjusting the song name to be compatible
-			var songFormat = StringTools.replace(PlayState.storyPlaylist[0], " ", "-");
-			switch (songFormat) {
-				case 'Dad-Battle': songFormat = 'Dadbattle';
-				case 'Philly-Nice': songFormat = 'Philly';
-			}
-
-			var poop:String = Highscore.formatSong(songFormat, curDifficulty);
-			PlayState.sicks = 0;
-			PlayState.bads = 0;
-			PlayState.shits = 0;
-			PlayState.goods = 0;
-			PlayState.campaignMisses = 0;
-			PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
+			PlayState.SONG = Song.loadFromJson(StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase() + diffic, StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
+				//CharacterState.previousState = new StoryMenuState();
+				FlxG.switchState(new CharacterState());
+				CharacterState.stateReturn = new StoryMenuState();
 			});
 		}
 	}

@@ -46,7 +46,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'long-wired-brawl':
 				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'agoti-but-ace':
+			case 'scythe':
 				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'corrupt':
@@ -71,17 +71,17 @@ class DialogueBox extends FlxSpriteGroup
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'siu':
+			/*case 'siu':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'outage':
+			*/case 'outage':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('dialogueBox-pixel','week2');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'blade-trap','long-wired-brawl','corrupt','agoti-but-ace':
+			case 'blade-trap','long-wired-brawl','scythe':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBoxace');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
@@ -94,15 +94,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
 
-			case 'thorns':
+			case 'corrupt':
 				hasDialog = true;
+				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
-
-				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
-				face.setGraphicSize(Std.int(face.width * 6));
-				add(face);
 		}
 
 		this.dialogueList = dialogueList;
@@ -132,7 +129,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 		}
-		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'agoti-but-ace')
+		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/acePortrait');
@@ -146,7 +143,7 @@ class DialogueBox extends FlxSpriteGroup
 	else if (PlayState.SONG.song.toLowerCase() == "corrupt")
         {
             portraitLeft = new FlxSprite(-20, 40);
-            portraitLeft.frames = Paths.getSparrowAtlas('weeb/spiritportrait');
+            portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiHDPortrait');
             portraitLeft.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
             portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
             portraitLeft.updateHitbox();

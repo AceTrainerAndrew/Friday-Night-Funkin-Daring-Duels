@@ -69,7 +69,8 @@ class ChartingState extends MusicBeatState
 	var GRID_SIZE:Int = 40;
 
 	var dummyArrow:FlxSprite;
-
+	
+	var stepperDType:FlxUINumericStepper;
 	var curRenderedNotes:FlxTypedGroup<Note>;
 	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
 
@@ -422,6 +423,10 @@ class ChartingState extends MusicBeatState
 		stepperSectionBPM.value = Conductor.bpm;
 		stepperSectionBPM.name = 'section_bpm';
 
+		stepperDType = new FlxUINumericStepper(10, 230, 1, 0, 0, 9, 0);
+		stepperDType.value = 0;
+		stepperDType.name = 'quien canta';
+		
 		var stepperCopy:FlxUINumericStepper = new FlxUINumericStepper(110, 132, 1, 1, -999, 999, 0);
 		var stepperCopyLabel = new FlxText(174,132,'sections back');
 
@@ -457,6 +462,7 @@ class ChartingState extends MusicBeatState
 		tab_group_section.add(stepperLengthLabel);
 		tab_group_section.add(stepperSectionBPM);
 		tab_group_section.add(stepperCopy);
+		tab_group_section.add(stepperDType);
 		tab_group_section.add(stepperCopyLabel);
 		tab_group_section.add(check_mustHitSection);
 		tab_group_section.add(check_altAnim);
@@ -612,7 +618,14 @@ class ChartingState extends MusicBeatState
 					nums.value = 0.1;
 				_song.notes[curSection].bpm = Std.int(nums.value);
 				updateGrid();
-			}else if (wname == 'song_vocalvol')
+			}
+			else if (wname == 'quien canta')
+			{
+				_song.notes[curSection].dType = Std.int(nums.value);
+				updateGrid();
+			}
+			
+			else if (wname == 'song_vocalvol')
 			{
 				if (nums.value <= 0.1)
 					nums.value = 0.1;
@@ -1160,6 +1173,7 @@ class ChartingState extends MusicBeatState
 		check_altAnim.checked = sec.altAnim;
 		check_changeBPM.checked = sec.changeBPM;
 		stepperSectionBPM.value = sec.bpm;
+		stepperDType.value = sec.dType;
 	}
 
 	function updateHeads():Void
@@ -1271,7 +1285,9 @@ class ChartingState extends MusicBeatState
 			mustHitSection: true,
 			sectionNotes: [],
 			typeOfSection: 0,
-			altAnim: false
+			altAnim: false,
+			dType: 0
+
 		};
 
 		_song.notes.push(sec);
@@ -1336,7 +1352,9 @@ class ChartingState extends MusicBeatState
 				mustHitSection: mustHitSection,
 				sectionNotes: [],
 				typeOfSection: 0,
-				altAnim: altAnim
+				altAnim: altAnim,
+				dType: 0
+
 			};
 
 			return sec;

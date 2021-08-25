@@ -11,8 +11,8 @@ class BackgroundLuna extends FlxSprite
 
 		frames = Paths.getSparrowAtlas("weeb/Luna");
 		//animation.addByIndices('Symbol', 'Luna', [0], "", 0, false);
-		animation.addByIndices('BF idle dance', 'BF idle dance', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, true);
-		animation.play('BF idle dance', true);
+		animation.addByIndices('Idle', 'Idle', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "", 24, true);
+		animation.play('Idle', true);
 		antialiasing = true;
 	}
 
@@ -23,7 +23,7 @@ class BackgroundLuna extends FlxSprite
 		//danceDir = !danceDir;
 
 		//if (danceDir)
-			animation.play('BF idle dance', true);
+			animation.play('Idle', true);
 		//else
 			//animation.play('danceLeft', true);
 	}

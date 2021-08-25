@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="lunaduo_assets.png">
+	<!-- Created with Adobe Animate version 21.0.4.39603 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Down0000" x="0" y="0" width="1280" height="1560" frameX="0" frameY="-27" frameWidth="1280" frameHeight="1615"/>
+	<SubTexture name="Down0001" x="1280" y="0" width="1280" height="1615"/>
+	<SubTexture name="Idle0000" x="2560" y="0" width="1280" height="1560"/>
+	<SubTexture name="Left0000" x="3840" y="0" width="1280" height="1560" frameX="-38" frameY="0" frameWidth="1356" frameHeight="1560"/>
+	<SubTexture name="Left0001" x="5120" y="0" width="1356" height="1560"/>
+	<SubTexture name="Right0000" x="6476" y="0" width="1280" height="1560" frameX="-23" frameY="0" frameWidth="1326" frameHeight="1560"/>
+	<SubTexture name="Right0001" x="0" y="1615" width="1326" height="1560"/>
+	<SubTexture name="Up0000" x="1326" y="1615" width="1280" height="1560" frameX="0" frameY="-26" frameWidth="1280" frameHeight="1612"/>
+	<SubTexture name="Up0001" x="2606" y="1615" width="1280" height="1612"/>
+</TextureAtlas>

@@ -1393,7 +1393,7 @@
     "player2": "ace",
     "song": "blade-trap",
     "stage": "AcesHouse",
-    "noteStyle": "normal",
+    "noteStyle": "ace",
     "validScore": true,
     "sections": 0,
     "needsVoices": true,

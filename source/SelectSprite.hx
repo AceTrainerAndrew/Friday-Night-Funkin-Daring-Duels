@@ -19,7 +19,7 @@ class SelectSprite extends FlxSprite
         case 'BOYFRIEND':
             anim('idle','BF idle dance00');
             anim('cheer','BF HEY!!');
-        case 'ace':
+        case 'aceman':
             anim('idle','Dad idle dance00');
             anim('cheer','Dad Sing note UP00');
         }

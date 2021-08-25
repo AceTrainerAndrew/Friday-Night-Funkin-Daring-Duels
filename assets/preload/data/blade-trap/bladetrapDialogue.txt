@@ -1,11 +1,9 @@
-:dad:Hello! My friend told me you were causing some trouble.
-:bf:Beep bo bop.
-:dad:Senpai is... A bad person?
-:bf: Bes.
-:dad:Hmm. I doubt it.
+:dad:Are you "Boyfriend.xml"?
+:bf:Bes.
+:dad:I overheard that you were causing trouble with somebody I talked to.
+:bf: Bo bop???
+:dad:I won't tell you his name. He said he wants to deal with you hisself, but I want to see what you're made of.
 :bf: Bebopbo!
-:dad:You'll prove it by beating me in a singing battle..?
-:bf:Beebop.
-:dad:Ok... I'm not very good at singing though.
-:bf:Bok.
-:dad:Show me what you got!
+:dad:A rap battle? How does that make any logical sense in this situation?
+:bf:B)
+:dad:...

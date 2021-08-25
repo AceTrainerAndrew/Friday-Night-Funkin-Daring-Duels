@@ -32,7 +32,7 @@ class CharacterState extends MusicBeatState
 {
 	
 
-	var menuItems:Array<String> = ['BOYFRIEND', 'ace'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'aceman'];
 	//var bfMode:Array<String> = ['bf', 'bf-two', 'bf-three'];
 	//var suffixArray:Array<String> = ['', '-two', '-three'];
 	var curSelected:Int = 0;
@@ -42,7 +42,7 @@ class CharacterState extends MusicBeatState
 	var menuBG:FlxSprite;
 	//var icons:FlxTypedGroup<FlxSprite>;
 	public static var storyMode:Bool = false;
-	var selectedCharPriv:Array<String> = ['bf', 'ace'];
+	var selectedCharPriv:Array<String> = ['bf', 'aceman'];
 	public static var selectedChar:String;
 	private var camFollow:FlxObject;
 	var checkers:FlxBackdrop;
@@ -163,7 +163,7 @@ class CharacterState extends MusicBeatState
 		
 		FlxG.camera.focusOn(camFollow.getPosition());
 		//txtOptionTitle.text = shittyNames[curSelected].toUpperCase();
-		txtOptionTitle.text = "poop";
+		txtOptionTitle.text = "Character Select";
 		txtOptionTitle.x = FlxG.width - (txtOptionTitle.width + 10);
 		if (txtOptionTitle.text == '')
 		{
@@ -281,7 +281,7 @@ class CharacterState extends MusicBeatState
 			case "BOYFRIEND":
 				FlxTween.color(menuBG,1,menuBG.color,bf1Color);
 			
-			case "ace":
+			case "aceman":
 				FlxTween.color(menuBG,1,menuBG.color,bf2Color);
 				
 			//case "BOYFRIENDTHIRD":

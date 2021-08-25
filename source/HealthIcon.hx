@@ -38,8 +38,10 @@ class HealthIcon extends FlxSprite
 		animation.add('monster', [19, 20], 0, false, isPlayer);
 		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
 		animation.add('ace', [24, 25], 0, false, isPlayer);
-		animation.add('senpaihd', [22, 22], 0, false, isPlayer);
+		animation.add('bf-ace', [24, 25], 0, false, isPlayer);
+		animation.add('senpaihd', [39, 40], 0, false, isPlayer);
 		animation.add('cb', [26, 27], 0, false, isPlayer);
+		animation.add('bf-cb', [26, 27], 0, false, isPlayer);
 		animation.add('acespiritduo', [23, 23], 0, false, isPlayer);
 		animation.add('luna', [30, 31], 0, false, isPlayer);
 		animation.add('luigi', [32, 33], 0, false, isPlayer);
@@ -47,6 +49,9 @@ class HealthIcon extends FlxSprite
 		animation.add('andrew', [34, 35], 0, false, isPlayer);
 		animation.add('shadow-ace', [36, 36], 0, false, isPlayer);
 		animation.add('luna-duo', [37, 38], 0, false, isPlayer);
+		animation.add('z11', [41, 42], 0, false, isPlayer);
+		animation.add('fox', [43, 44], 0, false, isPlayer);
+
 
 		animation.play(char);
 
