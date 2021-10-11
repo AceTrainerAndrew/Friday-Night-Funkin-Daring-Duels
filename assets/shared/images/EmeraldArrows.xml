@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="EmeraldArrows.png">
-	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- Created with Adobe Animate version 21.0.9.42677 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Up0000" x="0" y="0" width="307" height="302"/>
+	<SubTexture name="NewEmerald0000" x="0" y="0" width="340" height="420"/>
+	<SubTexture name="NewEmerald0001" x="340" y="0" width="340" height="420"/>
+	<SubTexture name="NewEmerald0002" x="680" y="0" width="340" height="420"/>
+	<SubTexture name="NewEmerald0003" x="0" y="420" width="340" height="420"/>
+	<SubTexture name="NewEmerald0004" x="340" y="420" width="340" height="420"/>
+	<SubTexture name="NewEmerald0005" x="340" y="420" width="340" height="420"/>
+	<SubTexture name="NewEmerald0006" x="0" y="420" width="340" height="420"/>
+	<SubTexture name="NewEmerald0007" x="680" y="0" width="340" height="420"/>
+	<SubTexture name="NewEmerald0008" x="340" y="0" width="340" height="420"/>
+	<SubTexture name="NewEmerald0009" x="0" y="0" width="340" height="420"/>
 </TextureAtlas>

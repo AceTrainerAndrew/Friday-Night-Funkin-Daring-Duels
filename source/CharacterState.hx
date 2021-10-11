@@ -32,7 +32,7 @@ class CharacterState extends MusicBeatState
 {
 	
 
-	var menuItems:Array<String> = ['BOYFRIEND', 'aceman'];
+	var menuItems:Array<String> = ['BOYFRIEND', 'bf-golden'];
 	//var bfMode:Array<String> = ['bf', 'bf-two', 'bf-three'];
 	//var suffixArray:Array<String> = ['', '-two', '-three'];
 	var curSelected:Int = 0;
@@ -42,7 +42,7 @@ class CharacterState extends MusicBeatState
 	var menuBG:FlxSprite;
 	//var icons:FlxTypedGroup<FlxSprite>;
 	public static var storyMode:Bool = false;
-	var selectedCharPriv:Array<String> = ['bf', 'aceman'];
+	var selectedCharPriv:Array<String> = ['bf', 'bf-golden'];
 	public static var selectedChar:String;
 	private var camFollow:FlxObject;
 	var checkers:FlxBackdrop;
@@ -281,7 +281,7 @@ class CharacterState extends MusicBeatState
 			case "BOYFRIEND":
 				FlxTween.color(menuBG,1,menuBG.color,bf1Color);
 			
-			case "aceman":
+			case "bf-golden":
 				FlxTween.color(menuBG,1,menuBG.color,bf2Color);
 				
 			//case "BOYFRIENDTHIRD":

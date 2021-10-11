@@ -34,7 +34,8 @@ class SelectState extends MusicBeatState
 	private var grpMenuShiz:FlxTypedGroup<FlxSprite>;
 	var alreadySelectedShit:Bool = false;
 
-	var remixNames:Array<String> = ['DO NOT CHOOSE THIS'];
+	var remixNames:Array<String> = [
+	'DO NOT CHOOSE THIS'];
 
 	
 
@@ -48,16 +49,16 @@ class SelectState extends MusicBeatState
 	//	if(sys.FileSystem.isDirectory('assets/data/b-blammed')){
 	//	}
 
-		menuItems.push('NORMAL');
-		remixNames.push('ACEMAN');
+		menuItems.push('EXTRA');
+		remixNames.push('NORMAL');
 		
 		//if(sys.FileSystem.isDirectory('assets/data/u-satin-panties')){
-		menuItems.push('NORMAL');
-		remixNames.push('ACEMAN');
-
-
-		menuItems.push('ACEMAN');
+		menuItems.push('EXTRA');
 		remixNames.push('NORMAL');
+
+
+		menuItems.push('NORMAL');
+		remixNames.push('EXTRA');
 		
 	//	}
 	
@@ -92,7 +93,7 @@ class SelectState extends MusicBeatState
 		remixCharacter.antialiasing = true;
 		add(remixCharacter);
 
-		var remixSelHeaderText:Alphabet = new Alphabet(0, 50, 'SELECT MODE', true, false);
+		var remixSelHeaderText:Alphabet = new Alphabet(0, 50, 'SELECT SONGS TYPE', true, false);
 		remixSelHeaderText.screenCenter(X);
 		add(remixSelHeaderText);
 
@@ -134,35 +135,36 @@ class SelectState extends MusicBeatState
 					changeSelection(1);
 				}
 		
-				if (accepted && menuItems[curSelected] != 'CAPTIAN' && menuItems[curSelected] != 'ZMODE')
+				if (accepted && menuItems[curSelected] != 'ACE')
 				{
 					alreadySelectedShit = true;
 					var daSelected:String = menuItems[curSelected];
 					FlxFlicker.flicker(remixCharacter, 0);
 					
+					trace(menuItems[curSelected]);
 				
 					
 		
 					switch (daSelected)
 					{
-						case "NORMAL":
+						case "EXTRA":
 							FlxG.sound.play(Paths.sound('confirmMenu'));
 							
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							
 							new FlxTimer().start(0.7, function(tmr:FlxTimer)
 							{
-								FlxG.switchState(new StoryMenuState());
+								FlxG.switchState(new FreeplayState());
 								
 							});
-						case "ACEMAN":
+						case "NORMAL":
 							FlxG.sound.play(Paths.sound('confirmMenu'));
 							
 							FlxFlicker.flicker(grpMenuShit.members[curSelected],0);
 							new FlxTimer().start(0.7, function(tmr:FlxTimer)
 							{
 							//	FlxG.switchState(new StoryMenuState1());
-							FlxG.switchState(new StoryMenuState());
+							FlxG.switchState(new ExtraFreeplayState());
 							
 							});
                        /* case "CAPTIAN":
@@ -245,8 +247,8 @@ class SelectState extends MusicBeatState
 
 		switch (daSelected)
 		{
-			case "NORMAL":
-				remixCharacter.loadGraphic(Paths.image('gameSelect/ptr'));
+			case "EXTRA":
+				remixCharacter.loadGraphic(Paths.image('gameSelect/fnf'));
 				remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .65));
 				remixCharacter.updateHitbox();
 				remixCharacter.screenCenter();
@@ -254,8 +256,8 @@ class SelectState extends MusicBeatState
 				
 				
 				
-			case "ACEMAN":
-				remixCharacter.loadGraphic(Paths.image('gameSelect/fnf'));
+			case "NORMAL":
+				remixCharacter.loadGraphic(Paths.image('gameSelect/ptr'));
 				remixCharacter.setGraphicSize(Std.int(remixCharacter.width * .65));
 				remixCharacter.offset.x += 130;
 				remixCharacter.updateHitbox();

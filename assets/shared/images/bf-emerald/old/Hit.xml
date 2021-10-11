@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Hit.png">
+	<!-- Created with Adobe Animate version 21.0.8.42666 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="EmeraldHit0000" x="0" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0001" x="602" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0002" x="1204" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0003" x="0" y="414" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0004" x="602" y="414" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0005" x="1204" y="414" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0006" x="0" y="828" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0007" x="602" y="828" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0008" x="1204" y="828" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0009" x="0" y="1242" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0010" x="0" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0011" x="602" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0012" x="1204" y="0" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0013" x="0" y="414" width="602" height="414"/>
+	<SubTexture name="EmeraldHit0014" x="602" y="414" width="602" height="414"/>
+</TextureAtlas>

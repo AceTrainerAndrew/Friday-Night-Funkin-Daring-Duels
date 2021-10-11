@@ -49,6 +49,9 @@ class DialogueBox extends FlxSpriteGroup
 			case 'scythe':
 				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'waterstream':
+				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'corrupt':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -81,11 +84,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('dialogueBox-pixel','week2');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'blade-trap','long-wired-brawl','scythe':
+			case 'blade-trap','long-wired-brawl','scythe','waterstream':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBoxace');
-				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
-				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/DialogueWeek6');
+				box.animation.addByPrefix('ace', 'ace', 24, false);
+				box.animation.addByPrefix('normalOpen', 'ace', 24, false);
+				box.animation.addByPrefix('bf', 'bf', 24, false);
 			case 'roses':
 				hasDialog = true;
 				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
@@ -129,7 +133,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 		}
-		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe')
+		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe' ||  PlayState.SONG.song.toLowerCase() == 'waterstream')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/acePortrait');
@@ -311,6 +315,11 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
+					
+					if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe' ||  PlayState.SONG.song.toLowerCase() == 'waterstream')
+					{
+						box.animation.play("ace");
+					}
 				}
 			case 'bf':
 				portraitLeft.visible = false;
@@ -318,6 +327,11 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+					
+					if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe' ||  PlayState.SONG.song.toLowerCase() == 'waterstream')
+					{
+						box.animation.play("bf");
+					}
 				}
 		}
 	}

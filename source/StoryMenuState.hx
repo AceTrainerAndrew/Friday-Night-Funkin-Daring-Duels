@@ -30,12 +30,12 @@ class StoryMenuState extends MusicBeatState
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['blade-trap', 'long-wired-brawl', 'scythe','corrupt'],
+		['blade-trap', 'long-wired-brawl', 'scythe','waterstream'],
 		['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, false, false, false, false, false, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
@@ -56,7 +56,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Crowned",
-		"Xtra"
+		"THE REST IS IN FREEPLAY"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -280,7 +280,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
-				grpWeekCharacters.members[1].animation.play('parappaConfirm');
+				grpWeekCharacters.members[1].animation.play('BF HEY!!');
 				stopspamming = true;
 			}
 

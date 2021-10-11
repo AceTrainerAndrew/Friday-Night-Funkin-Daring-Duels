@@ -113,10 +113,10 @@ class Note extends FlxSprite
 							case 2:
 							{
 								frames = Paths.getSparrowAtlas('EmeraldArrows');
-								animation.addByPrefix('greenScroll', 'Up');
-								animation.addByPrefix('redScroll', 'Up');
-								animation.addByPrefix('blueScroll', 'Up');
-								animation.addByPrefix('purpleScroll', 'Up');
+								animation.addByPrefix('greenScroll', 'NewEmerald');
+								animation.addByPrefix('redScroll', 'NewEmerald');
+								animation.addByPrefix('blueScroll', 'NewEmerald');
+								animation.addByPrefix('purpleScroll', 'NewEmerald');
  
 /*								animation.addByPrefix('purpleholdend', 'purple fire');
 								animation.addByPrefix('greenholdend', 'green fire');

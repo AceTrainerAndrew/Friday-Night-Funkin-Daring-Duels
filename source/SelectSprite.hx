@@ -14,14 +14,14 @@ class SelectSprite extends FlxSprite
         frames = daTex;
 
 		//frames = FlxAtlasFrames.fromSparrow("assets/preload/images/charMenu.png", "assets/preload/images/charMenu.xml");
-        antialiasing =true;
+        antialiasing = true;
         switch (boyfriend){
         case 'BOYFRIEND':
-            anim('idle','BF idle dance00');
-            anim('cheer','BF HEY!!');
-        case 'aceman':
-            anim('idle','Dad idle dance00');
-            anim('cheer','Dad Sing note UP00');
+            anim('idle','BF Idle');
+            anim('cheer','BF Hey');
+        case 'bf-golden':
+            anim('idle','G BF Idle');
+            anim('cheer','G BF Hey');
         }
         
 	}

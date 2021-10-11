@@ -17,6 +17,7 @@ class HealthIcon extends FlxSprite
 
 		antialiasing = true;
 		animation.add('bf', [0, 1], 0, false, isPlayer);
+		animation.add('bf-golden', [0, 1], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
 		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
 		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
@@ -38,6 +39,7 @@ class HealthIcon extends FlxSprite
 		animation.add('monster', [19, 20], 0, false, isPlayer);
 		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
 		animation.add('ace', [24, 25], 0, false, isPlayer);
+		animation.add('ace-man', [24, 25], 0, false, isPlayer);
 		animation.add('bf-ace', [24, 25], 0, false, isPlayer);
 		animation.add('senpaihd', [39, 40], 0, false, isPlayer);
 		animation.add('cb', [26, 27], 0, false, isPlayer);

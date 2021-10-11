@@ -39,8 +39,8 @@ class MainMenuState extends MusicBeatState
 
 	public static var nightly:String = "";
 
-	public static var kadeEngineVer:String = "6.1" + nightly;
-	public static var gameVer:String = "6.1";
+	public static var kadeEngineVer:String = "7" + nightly;
+	public static var gameVer:String = "7";
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -101,14 +101,25 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
-			if (firstStart)
+/*			if (firstStart)
+			if (menuItem.ID == 2)
+				{
+					menuItem.y = 60 + (i * 80);
+				}
+				else
 				FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 
 						finishedFunnyMove = true; 
 						changeItem();
 					}});
 			else
-				menuItem.y = 60 + (i * 160);
+*/				menuItem.y = 60 + (i * 160);
+				if (menuItem.ID == 2)
+				{
+					menuItem.y = 60 + (i * 79);
+				}
+			
+				finishedFunnyMove = true; 
 		}
 
 		firstStart = false;
@@ -228,7 +239,7 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new StoryMenuState());
 				trace("Story Menu Selected");
 			case 'freeplay':
-				FlxG.switchState(new FreeplayState());
+				FlxG.switchState(new SelectState());
 
 				trace("Freeplay Menu Selected");
 

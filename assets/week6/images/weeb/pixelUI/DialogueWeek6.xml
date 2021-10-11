@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="DialogueWeek6.png">
+	<!-- Created with Adobe Animate version 21.0.9.42677 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ace0000" x="0" y="0" width="265" height="194"/>
+	<SubTexture name="bf0000" x="0" y="194" width="265" height="194"/>
+</TextureAtlas>

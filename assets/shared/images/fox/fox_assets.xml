@@ -14,8 +14,14 @@
 	<SubTexture name="Left0001" x="0" y="284" width="498" height="271"/>
 	<SubTexture name="Left0002" x="0" y="284" width="498" height="271"/>
 	<SubTexture name="Left0003" x="498" y="284" width="419" height="215" frameX="-8" frameY="-21" frameWidth="498" frameHeight="271"/>
-	<SubTexture name="Right0000" x="917" y="284" width="315" height="284" frameX="0" frameY="0" frameWidth="375" frameHeight="284"/>
-	<SubTexture name="Right0001" x="1232" y="284" width="315" height="284" frameX="-60" frameY="0" frameWidth="375" frameHeight="284"/>
-	<SubTexture name="Up0000" x="1547" y="284" width="338" height="284" frameX="0" frameY="-90" frameWidth="338" frameHeight="374"/>
-	<SubTexture name="Up0001" x="0" y="568" width="338" height="284" frameX="0" frameY="0" frameWidth="338" frameHeight="374"/>
+	<SubTexture name="Left0004" x="498" y="284" width="419" height="215" frameX="-8" frameY="-21" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Left0005" x="498" y="284" width="419" height="215" frameX="-8" frameY="-21" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Left0006" x="917" y="284" width="343" height="183" frameX="-6" frameY="-37" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Left0007" x="917" y="284" width="343" height="183" frameX="-6" frameY="-37" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Left0008" x="917" y="284" width="343" height="183" frameX="-6" frameY="-37" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Left0009" x="917" y="284" width="343" height="183" frameX="-6" frameY="-37" frameWidth="498" frameHeight="271"/>
+	<SubTexture name="Right0000" x="1260" y="284" width="315" height="284" frameX="0" frameY="0" frameWidth="375" frameHeight="284"/>
+	<SubTexture name="Right0001" x="1575" y="284" width="315" height="284" frameX="-60" frameY="0" frameWidth="375" frameHeight="284"/>
+	<SubTexture name="Up0000" x="0" y="568" width="338" height="284" frameX="0" frameY="-90" frameWidth="338" frameHeight="374"/>
+	<SubTexture name="Up0001" x="338" y="568" width="338" height="284" frameX="0" frameY="0" frameWidth="338" frameHeight="374"/>
 </TextureAtlas>
