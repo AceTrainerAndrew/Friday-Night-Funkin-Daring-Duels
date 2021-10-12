@@ -532,7 +532,7 @@ class Character extends FlxSprite
 			case 'ace':
 				frames = Paths.getSparrowAtlas('ace/char');
 			
-				animation.addByPrefix('idle', 'Ace Idle', 24);
+				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
 				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
 				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
 				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);
@@ -569,7 +569,7 @@ class Character extends FlxSprite
 			case 'bf-ace':
 				frames = Paths.getSparrowAtlas('ace/char');
 			
-				animation.addByPrefix('idle', 'Ace Idle', 24);
+				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
 				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
 				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
 				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);

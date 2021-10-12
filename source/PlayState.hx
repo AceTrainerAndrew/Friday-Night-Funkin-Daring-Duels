@@ -1212,7 +1212,7 @@ class PlayState extends MusicBeatState
 				dad.y -= 400;
 			case "z11":
 				dad.y += 400;
-				camPos.y -= 350;
+				camPos.y -= 400;
 		}		
 
 
