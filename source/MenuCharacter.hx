@@ -29,7 +29,7 @@ class MenuCharacter extends FlxSprite
 		'pico' => new CharacterSetting(0, 0, 1.0, true),
 		'mom' => new CharacterSetting(-30, 140, 0.85),
 		'parents-christmas' => new CharacterSetting(100, 130, 1.8),
-		'senpai' => new CharacterSetting(75, 100, 1.4)
+		'senpai' => new CharacterSetting(-30, 100, 0.65)
 	];
 
 	private var flipped:Bool = false;

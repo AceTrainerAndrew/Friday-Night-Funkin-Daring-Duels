@@ -87,9 +87,10 @@ class DialogueBox extends FlxSpriteGroup
 			case 'blade-trap','long-wired-brawl','scythe','waterstream':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/DialogueWeek6');
-				box.animation.addByPrefix('ace', 'ace', 24, false);
-				box.animation.addByPrefix('normalOpen', 'ace', 24, false);
-				box.animation.addByPrefix('bf', 'bf', 24, false);
+				box.animation.addByPrefix('ace', 'AceDialogue', 24, false);
+				box.animation.addByPrefix('normalOpen', 'AceDialogue', 24, false);
+				box.animation.addByPrefix('bf', 'BFDialogue', 24, false);
+				box.animation.addByPrefix('bf-golden', 'GoldenBFDialogue', 24, false);
 			case 'roses':
 				hasDialog = true;
 				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
@@ -188,14 +189,19 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		
 		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.75));
 		box.updateHitbox();
 		add(box);
 
 		box.screenCenter(X);
+		box.screenCenter(Y);
+		box.y += 10;
+		
 		portraitLeft.screenCenter(X);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox','week6'));
+		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox', 'week6'));
+		handSelect.x -= 150;
+		handSelect.y -= 20;
 		add(handSelect);
 
 
@@ -310,7 +316,14 @@ class DialogueBox extends FlxSpriteGroup
 		switch (curCharacter)
 		{
 			case 'dad':
+				
+				box.screenCenter(X);
+				box.screenCenter(Y);
+				box.y += 15;
+				
+				
 				portraitRight.visible = false;
+				
 				if (!portraitLeft.visible)
 				{
 					portraitLeft.visible = true;
@@ -322,15 +335,29 @@ class DialogueBox extends FlxSpriteGroup
 					}
 				}
 			case 'bf':
+				
+				box.screenCenter(X);
+				box.screenCenter(Y);
+				box.x += 45;
+				
 				portraitLeft.visible = false;
 				if (!portraitRight.visible)
 				{
+					
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
 					
 					if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe' ||  PlayState.SONG.song.toLowerCase() == 'waterstream')
 					{
+						if (CharacterState.selectedChar == "bf")
+						{
 						box.animation.play("bf");
+						}
+						
+						if (CharacterState.selectedChar == "bf-golden")
+						{
+						box.animation.play("bf-golden");
+						}
 					}
 				}
 		}

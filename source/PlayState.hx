@@ -1218,7 +1218,7 @@ class PlayState extends MusicBeatState
 
 		
 		//boyfriend = new Boyfriend(770, 450, SONG.player1);
-		if (songLowercase == 'monster' || songLowercase == 'conflict')
+		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic')
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		else
 		boyfriend = new Boyfriend(770, 450, CharacterState.selectedChar);
@@ -1234,6 +1234,9 @@ class PlayState extends MusicBeatState
 		{
 		case 'bf-ace':
 				boyfriend.y -= 275;
+		case 'luna':
+				boyfriend.x -= 275;
+				boyfriend.y -= 685;
 		}
 		
 		// REPOSITIONING PER STAGE
@@ -1276,7 +1279,7 @@ class PlayState extends MusicBeatState
 		
 		ace = new Character(150, 350, 'shadow-ace');
 		
-		if (songLowercase != 'conflict')
+if (songLowercase != 'conflict' && songLowercase != 'acelistic')
 		add(gf);
 
 		// Shitty layering but whatev it works LOL
@@ -1530,7 +1533,7 @@ class PlayState extends MusicBeatState
 		  
 
 		
-	if (songLowercase == 'monster' || songLowercase == 'conflict')
+	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic')
 	{
 		iconP1 = new HealthIcon(SONG.player1, true);
 		add(iconP1);
