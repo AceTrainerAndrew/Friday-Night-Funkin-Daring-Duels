@@ -1164,10 +1164,15 @@ class PlayState extends MusicBeatState
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case  'ace':
-				//dad.y += 285;
 				camPos.x += 75;
 				dad.y += 150;
 				dad.x += 10;
+				
+				var evilTrail = new FlxTrail(dad, null, 4, 12, 0.25, 0.069);
+				evilTrail.framesEnabled = true;
+				evilTrail.color = 0xff0000;
+				add(evilTrail);
+				
 				camPos.set(dad.getGraphicMidpoint().x + 150, dad.getGraphicMidpoint().y);
 			case  'ace-man':
 				//dad.y += 285;
@@ -1234,6 +1239,11 @@ class PlayState extends MusicBeatState
 		{
 		case 'bf-ace':
 				boyfriend.y -= 275;
+				
+				var evilTrail = new FlxTrail(boyfriend, null, 4, 12, 0.25, 0.069);
+				evilTrail.framesEnabled = true;
+				evilTrail.color = 0xff0000;
+				add(evilTrail);
 		case 'luna':
 				boyfriend.x -= 275;
 				boyfriend.y -= 685;
@@ -2362,7 +2372,7 @@ for (songNotes in section.sectionNotes)
 		perfectMode = false;
 		#end
 
-		if (islwb && storyDifficulty > 0 && minusHealth) // shitty regen effect
+		if (islwb && storyDifficulty > 0 && minusHealth && health > 0.05) // shitty regen effect
 		{
 			if (health > 0)
 			{

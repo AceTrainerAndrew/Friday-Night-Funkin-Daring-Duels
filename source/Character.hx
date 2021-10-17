@@ -532,16 +532,17 @@ class Character extends FlxSprite
 			case 'ace':
 				frames = Paths.getSparrowAtlas('ace/char');
 			
-				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
-				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
-				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 24);
+				//animation.addByPrefix('idle', 'Ace IDLE', 24, false); //Without afterimage trail (24 frames)
+				animation.addByPrefix('idle', 'Ace IDLE', 6, false); //With afterimage trail (6 frames for idle/12 frames for others)
+				animation.addByPrefix('singUP', 'Ace Sing UP', 12);
+				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 12);
+				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 12);
+				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 12);
 				
-				animation.addByPrefix('singUPmiss', 'Ace Miss UP', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 24, false);
+				animation.addByPrefix('singUPmiss', 'Ace Miss UP', 12, false);
+				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 12, false);
+				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 12, false);
+				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 12, false);
 
 				addOffset('singDOWN', 0, -150);
 				addOffset('singDOWNmiss', 0, -150);
@@ -569,16 +570,17 @@ class Character extends FlxSprite
 			case 'bf-ace':
 				frames = Paths.getSparrowAtlas('ace/char');
 			
-				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
-				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
-				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 24);
+				//animation.addByPrefix('idle', 'Ace IDLE', 24, false); //Without afterimage trail (24 frames)
+				animation.addByPrefix('idle', 'Ace IDLE', 6, false); //With afterimage trail (6 frames for idle/12 frames for others)
+				animation.addByPrefix('singUP', 'Ace Sing UP', 12);
+				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 12);
+				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 12);
+				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 12);
 				
-				animation.addByPrefix('singUPmiss', 'Ace Miss UP', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 24, false);
+				animation.addByPrefix('singUPmiss', 'Ace Miss UP', 12, false);
+				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 12, false);
+				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 12, false);
+				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 12, false);
 
 				addOffset('singDOWN', 0, -150);
 				addOffset('singDOWNmiss', 0, -150);

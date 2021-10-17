@@ -7,3 +7,4 @@ siu:senpai:6
 ugh:ace-man:7
 casanova-but-ace:ace:6
 acelistic:ace:6
+attack:ace:6
