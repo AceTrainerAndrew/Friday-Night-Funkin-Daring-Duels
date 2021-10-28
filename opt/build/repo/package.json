@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildClient": "npm run build"
+    "buildClient": "npm run buildClient && npm install && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/acetrainerandrew/daringduels"
   },
   "keywords": [],
-  "author": "",
+  "author": "AceTrainerAndrew",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/acetrainerandrew/daringduels/issues"
