@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="spongeballer.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="down0000" x="0" y="0" width="1996" height="2014" frameX="-44" frameY="-23" frameWidth="2040" frameHeight="2037"/>
+	<SubTexture name="down0001" x="1996" y="0" width="1996" height="2014" frameX="0" frameY="0" frameWidth="2040" frameHeight="2037"/>
+	<SubTexture name="down0002" x="3992" y="0" width="1996" height="2014" frameX="0" frameY="0" frameWidth="2040" frameHeight="2037"/>
+	<SubTexture name="idle0000" x="5988" y="0" width="1996" height="2014" frameX="0" frameY="0" frameWidth="1996" frameHeight="2015"/>
+	<SubTexture name="idle0001" x="0" y="2014" width="1996" height="2014" frameX="0" frameY="-1" frameWidth="1996" frameHeight="2015"/>
+	<SubTexture name="idle0002" x="1996" y="2014" width="1996" height="2014" frameX="0" frameY="-1" frameWidth="1996" frameHeight="2015"/>
+	<SubTexture name="idle0003" x="3992" y="2014" width="1996" height="2014" frameX="0" frameY="-1" frameWidth="1996" frameHeight="2015"/>
+	<SubTexture name="left0000" x="5988" y="2014" width="1996" height="2014"/>
+	<SubTexture name="left0001" x="0" y="4028" width="1996" height="2014"/>
+	<SubTexture name="left0002" x="1996" y="4028" width="1996" height="2014"/>
+	<SubTexture name="right0000" x="3992" y="4028" width="1996" height="2014"/>
+	<SubTexture name="right0001" x="5988" y="4028" width="1996" height="2014"/>
+	<SubTexture name="right0002" x="0" y="6042" width="1996" height="2014"/>
+	<SubTexture name="up0000" x="1996" y="6042" width="1996" height="2014"/>
+	<SubTexture name="up0001" x="3992" y="6042" width="1996" height="2014"/>
+	<SubTexture name="up0002" x="5988" y="6042" width="1996" height="2014"/>
+</TextureAtlas>

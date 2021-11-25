@@ -531,7 +531,9 @@ class Character extends FlxSprite
 				
 			case 'ace':
 				frames = Paths.getSparrowAtlas('ace/char');
-			
+				
+			if (PlayState.SONG.song != 'danger')
+			{
 				//animation.addByPrefix('idle', 'Ace IDLE', 24, false); //Without afterimage trail (24 frames)
 				animation.addByPrefix('idle', 'Ace IDLE', 6, false); //With afterimage trail (6 frames for idle/12 frames for others)
 				animation.addByPrefix('singUP', 'Ace Sing UP', 12);
@@ -543,7 +545,20 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 12, false);
 				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 12, false);
 				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 12, false);
-
+			}
+			else
+			{
+				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
+				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
+				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 24);
+				
+				animation.addByPrefix('singUPmiss', 'Ace Miss UP', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 24, false);
+			}
 				addOffset('singDOWN', 0, -150);
 				addOffset('singDOWNmiss', 0, -150);
 				addOffset('singUP', 0, 100);
@@ -607,19 +622,35 @@ class Character extends FlxSprite
 			case 'cb':
 				frames = Paths.getSparrowAtlas('cb/CB_assets');
 				
-				animation.addByPrefix('idle', 'BF idle', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT', 24, false);
+				animation.addByPrefix('idle', 'Idle', 6, false);
+				animation.addByPrefix('singUP', 'Up', 12, false);
+				animation.addByPrefix('singDOWN', 'Down', 12, false);
+				animation.addByPrefix('singLEFT', 'Left', 12, false);
+				animation.addByPrefix('singRIGHT', 'Right', 12, false);
 				
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -10, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
+				addOffset('singDOWN', 30, 10);
+				addOffset('singLEFT', 110, 2);
+				addOffset('singUP', 128, 153);
+				addOffset('singRIGHT', 10, 43);
+				addOffset('idle', 60, 37);
+
 				
-				flipX = true;
+				playAnim('idle');
+			
+			case 'spongeballer':
+				frames = Paths.getSparrowAtlas('characters/spongeballer');
+				
+				animation.addByPrefix('idle', 'idle', 6, false);
+				animation.addByPrefix('singUP', 'up', 12, false);
+				animation.addByPrefix('singDOWN', 'down', 12, false);
+				animation.addByPrefix('singLEFT', 'left', 12, false);
+				animation.addByPrefix('singRIGHT', 'right', 12, false);
+				
+				addOffset('idle', 0, -15);
+			
+				scale.x = 0.25;
+				scale.y = 0.25;
+				
 				playAnim('idle');
 				
 			case 'acespiritduo':
@@ -662,10 +693,15 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 			*/
-				scale.x = 0.6;
-				scale.y = 0.6;
+				scale.x = 0.75;
+				scale.y = 0.75;
 				
-				addOffset("singUP", 0, 65);
+				addOffset('singDOWN', -9, 57);
+				addOffset('singLEFT', 70, 49);
+				addOffset('singUP', 18, 43);
+				addOffset('singRIGHT', 10, 49);
+				addOffset('idle', 23, 57);
+
 				
 				playAnim('idle');
 
@@ -876,35 +912,23 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				flipX = true;	
-			case 'bf-cb':
-				var tex = Paths.getSparrowAtlas('cb2/bf-cb_assets', 'shared');
-				frames = tex;
-
-				trace(tex.frames.length);
-
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-		
-				playAnim('idle');
-
-				flipX = true;
 				
+			case 'bf-cb':
+				frames = Paths.getSparrowAtlas('cb/CB_assets');
+				
+				animation.addByPrefix('idle', 'Idle', 6, false);
+				animation.addByPrefix('singUP', 'Up', 12, false);
+				animation.addByPrefix('singDOWN', 'Down', 12, false);
+				animation.addByPrefix('singLEFT', 'Left', 12, false);
+				animation.addByPrefix('singRIGHT', 'Right', 12, false);
+				
+				addOffset('singDOWN', 30, 10);
+				addOffset('singLEFT', 110, 2);
+				addOffset('singUP', 128, 153);
+				addOffset('singRIGHT', 10, 43);
+				addOffset('idle', 60, 37);
+				
+				playAnim('idle');
 			case 'z11':
 				var tex = Paths.getSparrowAtlas('z11/char', 'shared');
 				frames = tex;

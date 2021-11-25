@@ -4,7 +4,10 @@ agoti-but-ace:ace:6
 wavedashing:fox:7
 conflict:z11:7
 siu:senpai:6
-ugh:ace-man:7
 casanova-but-ace:ace:6
 acelistic:ace:6
 attack:ace:6
+outage:cb:2
+danger:luna:7
+kaboom:ace:6
+execution:spongeballer:7
