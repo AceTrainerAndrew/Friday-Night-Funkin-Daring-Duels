@@ -545,6 +545,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'Ace Miss LEFT', 12, false);
 				animation.addByPrefix('singRIGHTmiss', 'Ace Miss RIGHT', 12, false);
 				animation.addByPrefix('singDOWNmiss', 'Ace Miss DOWN', 12, false);
+			
+				animation.addByPrefix('singLEFT-alt', 'LEFT ALT', 6);
 			}
 			else
 			{
@@ -564,6 +566,38 @@ class Character extends FlxSprite
 				addOffset('singUP', 0, 100);
 				addOffset('singUPmiss', 0, 100);
 				addOffset('idle', -100, 0);
+
+				playAnim('idle');
+		
+			case 'ace-christmas':
+				frames = Paths.getSparrowAtlas('ace_christmas/christma');
+		
+				animation.addByPrefix('idle', 'Ace IDLE', 24, false);
+				animation.addByPrefix('singUP', 'Ace Sing UP', 24);
+				animation.addByPrefix('singRIGHT', 'Ace Sing RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Ace Sing DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Ace Sing LEFT', 24);
+			
+				addOffset('singDOWN', 0, -150);
+				addOffset('singUP', 0, 190);
+				addOffset('idle', -100, 0);
+
+				playAnim('idle');
+				
+			case 'bf-majin':
+				frames = Paths.getSparrowAtlas('majin/majin');
+		
+				animation.addByPrefix('idle', 'SONICFUNIDLE', 24, false);
+				animation.addByPrefix('singUP', 'SONICFUNUP', 24);
+				animation.addByPrefix('singRIGHT', 'SONICFUNLEFT', 24);
+				animation.addByPrefix('singDOWN', 'SONICFUNDOWN', 24);
+				animation.addByPrefix('singLEFT', 'SONICFUNRIGHT', 24);
+			
+				addOffset('singDOWN', -40, -110);
+				addOffset('singLEFT', 50, 10);
+				addOffset('singRIGHT', -170, -111);
+				addOffset('singUP', -125, 78);
+				addOffset('idle', 10, 150);
 
 				playAnim('idle');
 				
@@ -637,6 +671,50 @@ class Character extends FlxSprite
 				
 				playAnim('idle');
 			
+			case 'toaster':
+				// toaster
+				tex = Paths.getSparrowAtlas('characters/Toaster');
+
+				frames = tex;
+				animation.addByPrefix('idle', 'Idle', 24);
+				animation.addByPrefix('singUP', 'Up', 24);
+				animation.addByPrefix('singRIGHT', 'Right', 24);
+				animation.addByPrefix('singDOWN', 'Down', 24);
+				animation.addByPrefix('singLEFT', 'Left', 24);
+
+				addOffset('idle',54,-35);
+				addOffset("singUP", 38, -4);
+				addOffset("singRIGHT", 20, -36);
+				addOffset("singLEFT", 90, -37);
+				addOffset("singDOWN", 40, -120);
+
+				scale.x = 0.3;
+				scale.y = 0.3;
+
+				playAnim('idle');
+				
+			case 'microwave':
+				tex = Paths.getSparrowAtlas('characters/Microwave');
+				
+				frames = tex;
+
+				animation.addByPrefix('idle', 'Idle', 24);
+				animation.addByPrefix('singUP', 'Up', 24);
+				animation.addByPrefix('singRIGHT', 'Right', 24);
+				animation.addByPrefix('singDOWN', 'Down', 24);
+				animation.addByPrefix('singLEFT', 'Left', 24);
+
+				addOffset('idle', 42, -40);
+				addOffset("singUP", 48, -37);
+				addOffset("singRIGHT", 40, -32);
+				addOffset("singLEFT", 50, -38);
+				addOffset("singDOWN", 50, 30);
+
+				scale.x = 0.3;
+				scale.y = 0.3;
+
+				playAnim('idle');
+				
 			case 'spongeballer':
 				frames = Paths.getSparrowAtlas('characters/spongeballer');
 				
@@ -696,11 +774,11 @@ class Character extends FlxSprite
 				scale.x = 0.75;
 				scale.y = 0.75;
 				
-				addOffset('singDOWN', -9, 57);
-				addOffset('singLEFT', 70, 49);
-				addOffset('singUP', 18, 43);
-				addOffset('singRIGHT', 10, 49);
-				addOffset('idle', 23, 57);
+				addOffset('singDOWN', 101, 7);
+				addOffset('singLEFT', -15, 60);
+				addOffset('singUP', 20, 40);
+				addOffset('singRIGHT', 10, 54);
+				addOffset('idle', 26, 59);
 
 				
 				playAnim('idle');

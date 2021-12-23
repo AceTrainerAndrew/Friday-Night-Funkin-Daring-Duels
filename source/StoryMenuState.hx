@@ -31,11 +31,12 @@ class StoryMenuState extends MusicBeatState
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 		['blade-trap', 'long-wired-brawl', 'scythe','waterstream'],
-		['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing']
+		['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing'],
+		['aceless','danger']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, false, false, false, false, false, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, false, false, false, false, false, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
@@ -45,7 +46,8 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
-		['', 'bf', 'gf']
+		['', 'bf', 'gf'],
+		['senpai', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
@@ -56,7 +58,8 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"Crowned",
-		"THE REST IS IN FREEPLAY"
+		"THE REST IS IN FREEPLAY",
+		"Christmas Of 2021"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -303,12 +306,20 @@ class StoryMenuState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase() + diffic, StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
-			new FlxTimer().start(1, function(tmr:FlxTimer)
+			if(curWeek == 6)
 			{
-				//CharacterState.previousState = new StoryMenuState();
-				FlxG.switchState(new CharacterState());
-				CharacterState.stateReturn = new StoryMenuState();
-			});
+				var video:MP4Handler = new MP4Handler();
+				video.playMP4(Paths.video('Week6Cutscene'), false, false, false, false);
+			}
+			else
+			{
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					//CharacterState.previousState = new StoryMenuState();
+					FlxG.switchState(new CharacterState());
+					CharacterState.stateReturn = new StoryMenuState();
+				});
+			}
 		}
 	}
 

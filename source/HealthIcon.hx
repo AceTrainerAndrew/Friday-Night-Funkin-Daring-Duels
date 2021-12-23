@@ -17,7 +17,7 @@ class HealthIcon extends FlxSprite
 
 		antialiasing = true;
 		animation.add('bf', [0, 1], 0, false, isPlayer);
-		animation.add('bf-golden', [0, 1], 0, false, isPlayer);
+		animation.add('bf-golden', [47, 48], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
 		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
 		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
@@ -27,8 +27,11 @@ class HealthIcon extends FlxSprite
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
 		animation.add('aceman', [8, 9], 0, false, isPlayer);
 		animation.add('face', [10, 11], 0, false, isPlayer);
+		animation.add('microwave', [10, 11], 0, false, isPlayer);
+		animation.add('toaster', [10, 11], 0, false, isPlayer);
 		animation.add('spongeballer', [10, 11], 0, false, isPlayer);
 		animation.add('dad', [12, 13], 0, false, isPlayer);
+		animation.add('bf-majin', [28, 29], 0, false, isPlayer);
 		animation.add('senpai', [22, 22], 0, false, isPlayer);
 		animation.add('senpai-angry', [22, 22], 0, false, isPlayer);
 		animation.add('spirit', [23, 23], 0, false, isPlayer);
@@ -40,6 +43,7 @@ class HealthIcon extends FlxSprite
 		animation.add('monster', [19, 20], 0, false, isPlayer);
 		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
 		animation.add('ace', [24, 25], 0, false, isPlayer);
+		animation.add('ace-christmas', [24, 25], 0, false, isPlayer);
 		animation.add('ace-man', [8, 9], 0, false, isPlayer);
 		animation.add('bf-ace', [24, 25], 0, false, isPlayer);
 		animation.add('senpaihd', [39, 40], 0, false, isPlayer);

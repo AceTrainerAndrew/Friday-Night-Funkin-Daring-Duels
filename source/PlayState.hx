@@ -149,6 +149,7 @@ class PlayState extends MusicBeatState
 	
 	var exDad:Bool = false;
 	var exDad2:Bool = false;
+	var exDad3:Bool = false;
 
 	private var gfSpeed:Int = 1;
 	public var health:Float = 1; //making public because sethealth doesnt work without it
@@ -415,6 +416,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('waterstream/waterstreamDialogue'));
 			case 'danger':
 				exDad = true;
+			case 'final-destination':
+				exDad3 = true;
 		}
 
 		//defaults if no stage was found in chart
@@ -1126,13 +1129,17 @@ class PlayState extends MusicBeatState
 		
 		if (exDad)
 		{
-			Ace = new Character(-100, 100, "ace");
+			Ace = new Character(-100, 100, "ace-christmas");
 		}
-		
 		
 		if (exDad2)
 		{
 			Ace = new Character(-300, 100, "ace");
+		}
+		
+		if (exDad3)
+		{
+			Ace = new Character(-150, 400, "toaster");
 		}
 		
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -1182,6 +1189,12 @@ class PlayState extends MusicBeatState
 				evilTrail.framesEnabled = true;
 				evilTrail.color = 0xff0000;
 				add(evilTrail);
+
+				camPos.set(dad.getGraphicMidpoint().x + 150, dad.getGraphicMidpoint().y);
+			case  'ace-christmas':
+				camPos.x += 75;
+				dad.y += 75;
+				dad.x += 10;
 
 				camPos.set(dad.getGraphicMidpoint().x + 150, dad.getGraphicMidpoint().y);
 			case  'ace-man':
@@ -1236,12 +1249,15 @@ class PlayState extends MusicBeatState
 			case "z11":
 				dad.y += 400;
 				camPos.y -= 400;
+			case "microwave":
+				dad.y == 200;
+				camPos.y -= 400;
 		}		
 
 
 		
 		//boyfriend = new Boyfriend(770, 450, SONG.player1);
-		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution')
+		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless')
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		else
 		boyfriend = new Boyfriend(770, 450, CharacterState.selectedChar);
@@ -1263,6 +1279,11 @@ class PlayState extends MusicBeatState
 		case 'bf-ace':
 				boyfriend.y -= 275;
 				
+				if (songLowercase == 'conflict')
+				{
+					boyfriend.y += 55;
+				}
+				
 				var evilTrail = new FlxTrail(boyfriend, null, 4, 12, 0.25, 0.069);
 				evilTrail.framesEnabled = true;
 				evilTrail.color = 0xff0000;
@@ -1277,6 +1298,8 @@ class PlayState extends MusicBeatState
 				evilTrail.framesEnabled = true;
 				evilTrail.color = 0xff2864af;
 				add(evilTrail);
+		case 'bf-majin':
+				boyfriend.y -= 275;
 		}
 		
 		// REPOSITIONING PER STAGE
@@ -1332,6 +1355,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 	//		add(ace);
 		if (exDad) add(Ace);
 		if (exDad2) add(Ace);
+		if (exDad3) add(Ace);
 
 		add(dad);
 		add(boyfriend);
@@ -1444,6 +1468,15 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 			  'health', 0, 2);
 		    healthBar.scrollFactor.set();
 		    healthBar.createFilledBar(0xFFffd700, 0xFF31b0d1); // gold
+		    // healthBar for ace
+		    add(healthBar);
+		  }
+		  case 'ace-christmas':
+		  {
+		    healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			  'health', 0, 2);
+		    healthBar.scrollFactor.set();
+		    healthBar.createFilledBar(0xFFffd700, 0xFF2119ba); // gold & dark blue
 		    // healthBar for ace
 		    add(healthBar);
 		  }
@@ -1576,7 +1609,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		  
 
 		
-	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution')
+	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless')
 	{
 		iconP1 = new HealthIcon(SONG.player1, true);
 		add(iconP1);
@@ -1860,6 +1893,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		{
 			if (exDad) Ace.dance();
 			if (exDad2) Ace.dance();
+			if (exDad3) Ace.dance();
 			dad.dance();
 			gf.dance();
 			boyfriend.playAnim('idle');
@@ -2822,6 +2856,10 @@ for (songNotes in section.sectionNotes)
 						camFollow.y = dad.getMidpoint().y - 100;
 						camFollow.x = dad.getMidpoint().x + 75;
 						FlxTween.tween(FlxG.camera, {zoom: 1.1}, (Conductor.stepCrochet * 4 / 2000), {ease: FlxEase.elasticInOut});
+					case 'ace-christmas':
+						camFollow.y = dad.getMidpoint().y - 100;
+						camFollow.x = dad.getMidpoint().x + 75;
+						FlxTween.tween(FlxG.camera, {zoom: 1.1}, (Conductor.stepCrochet * 4 / 2000), {ease: FlxEase.elasticInOut});
 					case 'ace-man':
 						camFollow.y = dad.getMidpoint().y - 100;
 						camFollow.x = dad.getMidpoint().x + 75;
@@ -3095,7 +3133,7 @@ for (songNotes in section.sectionNotes)
 								altAnim = '-alt';
 						}
 						
-						if (!exDad && !exDad2)
+						if (!exDad && !exDad2 && !exDad3)
 							{
 								switch (Math.abs(daNote.noteData))
 								{
@@ -3121,6 +3159,13 @@ for (songNotes in section.sectionNotes)
 									if (daNote.dType == 2)  both = true;
 								}
 								if (exDad2)
+								{
+									targ = Ace;
+									if (daNote.dType == 1) targ = Ace;
+									if (daNote.dType == 0)  targ = dad;
+									if (daNote.dType == 2)  both = true;
+								}
+								if (exDad3)
 								{
 									targ = Ace;
 									if (daNote.dType == 1) targ = Ace;
@@ -3221,6 +3266,7 @@ for (songNotes in section.sectionNotes)
 						dad.holdTimer = 0;
 						if (exDad) Ace.holdTimer = 0;
 						if (exDad2) Ace.holdTimer = 0;
+						if (exDad3) Ace.holdTimer = 0;
 						
 						if (SONG.needsVoices)
 							vocals.volume = 1;
@@ -4530,7 +4576,7 @@ for (songNotes in section.sectionNotes)
 			luaModchart.executeState('stepHit',[curStep]);
 		}
 		
-		if (curSong.toLowerCase() == "blade-trap")
+/*		if (curSong.toLowerCase() == "blade-trap")
 		{
 			areyouprepared.loadGraphic(Paths.image('AreYouPrepared'));
 			areyouprepared.scrollFactor.set();
@@ -4561,7 +4607,7 @@ for (songNotes in section.sectionNotes)
 					FlxG.camera.scroll.y = 0;
 				}
 		}
-/*			if (curSong.toLowerCase() == "scythe") //waterstream
+			if (curSong.toLowerCase() == "scythe") //waterstream
 		{
 			switch (curStep)
 				{
@@ -4576,7 +4622,22 @@ for (songNotes in section.sectionNotes)
 					FlxG.camera.scroll.y = 0;
 				}
 		}
-	*/	
+*/	
+		if (curSong.toLowerCase() == "blade-trap")
+			{
+			switch (curStep)
+				{
+				case 235:
+					{
+						dad.playAnim("singLEFT-alt", true);
+					}
+				case 242:
+					{
+						dad.playAnim("singLEFT-alt", true);
+					}
+				}
+			}
+		
 		#end
 
 		// yes this updates every step.
@@ -4653,6 +4714,10 @@ for (songNotes in section.sectionNotes)
 				Ace.dance();
 			}
 			if (exDad2)
+			{
+				Ace.dance();
+			}
+			if (exDad3)
 			{
 				Ace.dance();
 			}

@@ -1,7 +1,7 @@
 bf
 dad
 gf
-spooky
+ace-christmas
 pico
 bf-car
 bf-christmas
@@ -12,7 +12,7 @@ ace
 bf-ace
 senpaihd
 cb
-acespiritduo
+bf-majin
 luna
 luigi
 andrew
@@ -23,3 +23,5 @@ bf-cb
 fox
 ace-man
 spongeballer
+microwave
+toaster

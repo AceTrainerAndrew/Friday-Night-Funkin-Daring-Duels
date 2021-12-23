@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="christma.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Ace IDLE0000" x="0" y="0" width="341" height="679" frameX="-10" frameY="-11" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0001" x="341" y="0" width="345" height="677" frameX="-15" frameY="-13" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0002" x="686" y="0" width="333" height="675" frameX="-21" frameY="-15" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0003" x="1019" y="0" width="330" height="676" frameX="-19" frameY="-14" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0004" x="1349" y="0" width="331" height="678" frameX="-17" frameY="-12" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0005" x="1680" y="0" width="331" height="679" frameX="-15" frameY="-11" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0006" x="2011" y="0" width="331" height="680" frameX="-12" frameY="-10" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0007" x="2342" y="0" width="333" height="683" frameX="-10" frameY="-8" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0008" x="2675" y="0" width="299" height="685" frameX="-8" frameY="-6" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0009" x="2974" y="0" width="298" height="686" frameX="-6" frameY="-5" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0010" x="3272" y="0" width="300" height="688" frameX="-4" frameY="-3" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0011" x="3572" y="0" width="302" height="690" frameX="-2" frameY="-2" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace IDLE0012" x="0" y="690" width="304" height="692" frameX="0" frameY="0" frameWidth="360" frameHeight="692"/>
+	<SubTexture name="Ace Sing DOWN0000" x="304" y="690" width="616" height="543" frameX="-5" frameY="-26" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0001" x="920" y="690" width="621" height="543" frameX="0" frameY="-13" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0002" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0003" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0004" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0005" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0006" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0007" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0008" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing DOWN0009" x="1541" y="690" width="621" height="546" frameX="0" frameY="0" frameWidth="621" frameHeight="569"/>
+	<SubTexture name="Ace Sing LEFT0000" x="2162" y="690" width="618" height="653" frameX="-40" frameY="-10" frameWidth="660" frameHeight="663"/>
+	<SubTexture name="Ace Sing LEFT0001" x="2780" y="690" width="640" height="658" frameX="-20" frameY="-5" frameWidth="660" frameHeight="663"/>
+	<SubTexture name="Ace Sing LEFT0002" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0003" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0004" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0005" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0006" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0007" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0008" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing LEFT0009" x="3420" y="690" width="660" height="663"/>
+	<SubTexture name="Ace Sing RIGHT0000" x="0" y="1382" width="491" height="672" frameX="0" frameY="-10" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0001" x="491" y="1382" width="479" height="677" frameX="0" frameY="-5" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0002" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0003" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0004" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0005" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0006" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0007" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0008" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing RIGHT0009" x="970" y="1382" width="465" height="682" frameX="-1" frameY="0" frameWidth="491" frameHeight="682"/>
+	<SubTexture name="Ace Sing UP0000" x="1435" y="1382" width="685" height="835" frameX="0" frameY="-47" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0001" x="2120" y="1382" width="624" height="864" frameX="-3" frameY="-18" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0002" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0003" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0004" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0005" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0006" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0007" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0008" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+	<SubTexture name="Ace Sing UP0009" x="2744" y="1382" width="590" height="882" frameX="-7" frameY="0" frameWidth="685" frameHeight="882"/>
+</TextureAtlas>

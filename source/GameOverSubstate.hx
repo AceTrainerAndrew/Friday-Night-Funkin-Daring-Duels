@@ -36,7 +36,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		bf = new Boyfriend(x, y, daBf);
 		add(bf);
 
-		if (daStage == 'AcesHouseEvil' && PlayState.SONG.player1 == 'bf-ace')
+		if (PlayState.SONG.player1 == 'bf-ace')
 		{
 			ace = new Boyfriend(x, y, 'bf-ace-dead');
 			add(ace);
