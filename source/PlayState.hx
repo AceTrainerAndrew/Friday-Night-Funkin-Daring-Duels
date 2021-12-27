@@ -1257,7 +1257,7 @@ class PlayState extends MusicBeatState
 
 		
 		//boyfriend = new Boyfriend(770, 450, SONG.player1);
-		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless')
+		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'vampirerays')
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		else
 		boyfriend = new Boyfriend(770, 450, CharacterState.selectedChar);
@@ -1342,7 +1342,7 @@ class PlayState extends MusicBeatState
 		
 		ace = new Character(150, 350, 'shadow-ace');
 		
-if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase != 'execution')
+if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase != 'execution' && songLowercase != 'vampirerays')
 		add(gf);
 
 		// Shitty layering but whatev it works LOL
@@ -1609,7 +1609,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		  
 
 		
-	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless')
+	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'vampirerays')
 	{
 		iconP1 = new HealthIcon(SONG.player1, true);
 		add(iconP1);
@@ -2253,6 +2253,40 @@ for (songNotes in section.sectionNotes)
 				
 					case 'normal':
 						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+						babyArrow.animation.addByPrefix('green', 'arrowUP');
+						babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+						babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+						babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+		
+						babyArrow.antialiasing = true;
+						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+		
+						switch (Math.abs(i))
+						{
+							case 0:
+								babyArrow.x += Note.swagWidth * 0;
+								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+								babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							case 1:
+								babyArrow.x += Note.swagWidth * 1;
+								babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+								babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+							case 2:
+								babyArrow.x += Note.swagWidth * 2;
+								babyArrow.animation.addByPrefix('static', 'arrowUP');
+								babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+							case 3:
+								babyArrow.x += Note.swagWidth * 3;
+								babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+								babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+							}
+						
+					case 'ace':
+						babyArrow.frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets');
 						babyArrow.animation.addByPrefix('green', 'arrowUP');
 						babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 						babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
