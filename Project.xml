@@ -55,10 +55,6 @@
 		<library name="week2"    preload="true" />
 		<library name="week3"    preload="true" />
 		<library name="week4"    preload="true" />
-		<library name="week5"    preload="true" />
-		<library name="week6"    preload="true" />
-		<library name="week7"    preload="true" />		
-		<library name="week8"    preload="true" />
 
 	</section>
 	
@@ -70,10 +66,6 @@
 		<library name="week2"    preload="false" />
 		<library name="week3"    preload="false" />
 		<library name="week4"    preload="false" />
-		<library name="week5"    preload="false" />
-		<library name="week6"    preload="false" />
-		<library name="week7"    preload="false" />
-		<library name="week8"    preload="false" />
 
 	</section>
 	
@@ -91,14 +83,6 @@
 	<assets path="assets/week3"    library="week3"    exclude="*.mp3" unless="web"/>
 	<assets path="assets/week4"    library="week4"    exclude="*.ogg" if="web"/>
 	<assets path="assets/week4"    library="week4"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/week5"    library="week5"    exclude="*.ogg" if="web"/>
-	<assets path="assets/week5"    library="week5"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/week6"    library="week6"    exclude="*.ogg" if="web"/>
-	<assets path="assets/week6"    library="week6"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/week7"    library="week6"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/week7"    library="week6"    exclude="*.ogg" if="web"/>
-	<assets path="assets/week8"    library="week6"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/week8"    library="week6"    exclude="*.ogg" if="web"/>
 
 	<assets path="assets/videos" exclude="*.mp3" if="web"/>
 	<assets path="assets/videos" exclude="*.ogg" unless="web"/>

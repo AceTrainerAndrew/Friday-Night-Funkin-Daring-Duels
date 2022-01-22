@@ -41,19 +41,19 @@ class DialogueBox extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'blade-trap':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.playMusic(Paths.music('Lunchbox','week2'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'long-wired-brawl':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.playMusic(Paths.music('Lunchbox','week2'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'scythe':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.playMusic(Paths.music('Lunchbox','week2'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'waterstream':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+				FlxG.sound.playMusic(Paths.music('Lunchbox','week2'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'corrupt':
-				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
+				FlxG.sound.playMusic(Paths.music('LunchboxScary','week2'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 
@@ -69,7 +69,8 @@ class DialogueBox extends FlxSpriteGroup
 				bgFade.alpha = 0.7;
 		}, 5);
 
-		box = new FlxSprite(-20, 45);
+		box = new FlxSprite(0, 0);
+		//box = new FlxSprite(-20, 45);
 		
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
@@ -86,11 +87,11 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
 			case 'blade-trap','long-wired-brawl','scythe','waterstream':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/DialogueWeek6');
+				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/DialogueWeek6','week2');
 				box.animation.addByPrefix('ace', 'AceDialogue', 24, false);
 				box.animation.addByPrefix('normalOpen', 'AceDialogue', 24, false);
 				box.animation.addByPrefix('bf', 'BFDialogue', 24, false);
-				box.animation.addByPrefix('bf-golden', 'GoldenBFDialogue', 24, false);
+				box.animation.addByPrefix('bf-golden', 'BFGOLDENDialogue', 24, false);
 			case 'roses':
 				hasDialog = true;
 				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
@@ -137,11 +138,13 @@ class DialogueBox extends FlxSpriteGroup
 		else if (PlayState.SONG.song.toLowerCase() == "blade-trap" || PlayState.SONG.song.toLowerCase() == 'long-wired-brawl' ||  PlayState.SONG.song.toLowerCase() == 'scythe' ||  PlayState.SONG.song.toLowerCase() == 'waterstream')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
-			portraitLeft.frames = Paths.getSparrowAtlas('weeb/acePortrait');
+			portraitLeft.frames = Paths.getSparrowAtlas('weeb/acePortrait','week2');
 			portraitLeft.animation.addByPrefix('enter', 'ace portrait enter', 24, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
+			portraitLeft.screenCenter(X);
+			portraitLeft.y += 100;
 			add(portraitLeft);
 			portraitLeft.visible = false;
 		}
@@ -168,11 +171,13 @@ class DialogueBox extends FlxSpriteGroup
         }
 		
 		portraitRight = new FlxSprite(0, 40);
-		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait','week6');
+		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait','week2');
 		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
 		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 		portraitRight.updateHitbox();
 		portraitRight.scrollFactor.set();
+		portraitRight.x -= 75;
+		portraitRight.y -= 75;
 		add(portraitRight);
 		portraitRight.visible = false;
 		
@@ -189,19 +194,19 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		
 		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.75));
+		box.setGraphicSize(Std.int(box.width* 0.7));
 		box.updateHitbox();
 		add(box);
 
 		box.screenCenter(X);
 		box.screenCenter(Y);
-		box.y += 10;
+		box.y += 100;
 		
 		portraitLeft.screenCenter(X);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox', 'week6'));
+		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox', 'week2'));
 		handSelect.x -= 150;
-		handSelect.y -= 20;
+		handSelect.y += 10;
 		add(handSelect);
 
 
@@ -316,10 +321,10 @@ class DialogueBox extends FlxSpriteGroup
 		switch (curCharacter)
 		{
 			case 'dad':
-				
+	
 				box.screenCenter(X);
-				box.screenCenter(Y);
-				box.y += 15;
+				//box.screenCenter(Y);
+				//box.y += 50;
 				
 				
 				portraitRight.visible = false;
@@ -336,9 +341,12 @@ class DialogueBox extends FlxSpriteGroup
 				}
 			case 'bf':
 				
-				box.screenCenter(X);
+/*				box.screenCenter(X);
 				box.screenCenter(Y);
-				box.x += 45;
+				box.x -= 45;
+				box.y += 125;
+*/
+				box.screenCenter(X);
 				
 				portraitLeft.visible = false;
 				if (!portraitRight.visible)

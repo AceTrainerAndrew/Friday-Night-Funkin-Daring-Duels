@@ -66,7 +66,7 @@ class Note extends FlxSprite
 			switch (PlayState.SONG.noteStyle)
 			{
 				case 'pixel':
-					loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels','week6'), true, 17, 17);
+					loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels','week2'), true, 17, 17);
  
 					if (noteType == 2)
 						{
@@ -101,12 +101,12 @@ class Note extends FlxSprite
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
 				case 'ace':
-						frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets');
+						frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets','week2');
 						var fuckingSussy = Paths.getSparrowAtlas('EmeraldArrows');
 						for(amogus in fuckingSussy.frames)
 							{
 								this.frames.pushFrame(amogus);
-							}
+							} 
  
 						switch(noteType)
 						{
@@ -134,7 +134,7 @@ class Note extends FlxSprite
 							}
 							default:
 							{
-								frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets');
+								frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets','week2');
 								animation.addByPrefix('greenScroll', 'green0');
 								animation.addByPrefix('redScroll', 'red0');
 								animation.addByPrefix('blueScroll', 'blue0');

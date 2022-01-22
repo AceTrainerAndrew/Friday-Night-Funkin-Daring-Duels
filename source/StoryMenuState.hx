@@ -25,41 +25,41 @@ class StoryMenuState extends MusicBeatState
 
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dad Battle'],
+		/*['Bopeebo', 'Fresh', 'Dad Battle'],
 		['outage', 'South', "Monster"],
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['blade-trap', 'long-wired-brawl', 'scythe','waterstream'],
-		['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing'],
-		['aceless','danger']
+	*/	['blade-trap', 'long-wired-brawl', 'scythe','waterstream'],
+	//	['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing'],
+	//	['aceless','danger']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, false, false, false, false, false, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
+		/*['dad', 'bf', 'gf'],
 		['spooky', 'bf', 'gf'],
 		['pico', 'bf', 'gf'],
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf'],
-		['', 'bf', 'gf'],
-		['senpai', 'bf', 'gf']
+	*/	['senpai', 'bf', 'gf'],
+	//	['', 'bf', 'gf'],
+	//	['senpai', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
 		"Get Gud",
-		"Daddy Dearest",
+	/*	"Daddy Dearest",
 		"Monster Shredder",
 		"PICO",
 		"MOMMY MUST MURDER",
 		"RED SNOW",
-		"Crowned",
-		"THE REST IS IN FREEPLAY",
-		"Christmas Of 2021"
+	*/	"Crowned",
+	//	"THE REST IS IN FREEPLAY",
+	//	"Christmas Of 2021"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -306,7 +306,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase() + diffic, StringTools.replace(PlayState.storyPlaylist[0]," ", "-").toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
-			if(curWeek == 6)
+			if(curWeek == 1)
 			{
 				var video:MP4Handler = new MP4Handler();
 				video.playMP4(Paths.video('Week6Cutscene'), false, false, false, false);

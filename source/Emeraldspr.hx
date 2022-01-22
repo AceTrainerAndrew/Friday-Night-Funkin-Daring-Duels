@@ -23,7 +23,7 @@ class Emeraldspr extends FlxSprite
 		//danceDir = !danceDir;
 
 		//if (danceDir)
-			animation.play('Emerald', true);
+		animation.play('Emerald', true);
 		//else
 			//animation.play('danceLeft', true);
 	}

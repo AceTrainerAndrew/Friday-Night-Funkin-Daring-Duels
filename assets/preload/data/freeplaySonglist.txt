@@ -1,5 +1,5 @@
 Tutorial:gf:1
-blade-trap:ace:6
-long-wired-brawl:ace:6
-scythe:ace:6
-waterstream:ace:6
+blade-trap:ace:1
+long-wired-brawl:ace:1
+scythe:ace:1
+waterstream:ace:1
