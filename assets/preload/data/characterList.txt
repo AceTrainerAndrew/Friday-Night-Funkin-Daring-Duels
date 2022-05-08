@@ -12,9 +12,7 @@ ace
 bf-ace
 senpaihd
 cb
-bf-majin
 luna
-luigi
 andrew
 shadow-ace
 luna-duo
@@ -22,6 +20,6 @@ bf-golden
 bf-cb
 fox
 ace-man
-spongeballer
+andrew-corrupt
 microwave
 toaster

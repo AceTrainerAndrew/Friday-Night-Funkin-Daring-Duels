@@ -56,6 +56,7 @@ class HealthIcon extends FlxSprite
 		animation.add('andrew', [34, 35], 0, false, isPlayer);
 		animation.add('shadow-ace', [36, 36], 0, false, isPlayer);
 		animation.add('luna-duo', [37, 38], 0, false, isPlayer);
+		animation.add('andrew-corrupt', [39, 40], 0, false, isPlayer);
 		animation.add('z11', [41, 42], 0, false, isPlayer);
 		animation.add('fox', [43, 44], 0, false, isPlayer);
 

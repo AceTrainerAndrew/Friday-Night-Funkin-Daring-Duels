@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="AcesHouse.png">
-	<!-- Created with Adobe Animate version 20.5.0.29329 -->
+	<!-- Created with Adobe Animate version 22.0.4.185 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="HouseNORMAL0000" x="0" y="0" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0001" x="0" y="0" width="971" height="508"/>
@@ -77,8 +77,8 @@
 	<SubTexture name="HouseNORMAL0072" x="971" y="1016" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0073" x="971" y="1016" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0074" x="0" y="1016" width="971" height="508"/>
-	<SubTexture name="HouseNORMAL0075" x="0" y="1524" width="971" height="508"/>
-	<SubTexture name="HouseNORMAL0076" x="0" y="1524" width="971" height="508"/>
+	<SubTexture name="HouseNORMAL0075" x="971" y="0" width="971" height="508"/>
+	<SubTexture name="HouseNORMAL0076" x="971" y="0" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0077" x="0" y="0" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0078" x="0" y="0" width="971" height="508"/>
 	<SubTexture name="HouseNORMAL0079" x="0" y="0" width="971" height="508"/>

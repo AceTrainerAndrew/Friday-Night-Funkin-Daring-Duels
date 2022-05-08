@@ -3,3 +3,6 @@ blade-trap:ace:1
 long-wired-brawl:ace:1
 scythe:ace:1
 waterstream:ace:1
+outage:cb:3
+kaboom:cb:3
+aflame:cb:3

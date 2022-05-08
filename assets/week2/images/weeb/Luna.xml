@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="Luna.png">
-	<!-- Created with Adobe Animate version 22.0.0.93 -->
+	<!-- Created with Adobe Animate version 20.5.0.29329 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Idle0000" x="0" y="0" width="406" height="996" frameX="0" frameY="-2" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0001" x="406" y="0" width="401" height="996" frameX="-3" frameY="-2" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0002" x="807" y="0" width="396" height="996" frameX="-6" frameY="-2" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0003" x="1203" y="0" width="391" height="996" frameX="-9" frameY="-2" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0004" x="1594" y="0" width="386" height="996" frameX="-12" frameY="-2" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0005" x="1980" y="0" width="382" height="997" frameX="-15" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0006" x="2362" y="0" width="377" height="997" frameX="-18" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0007" x="2739" y="0" width="372" height="997" frameX="-21" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0008" x="3111" y="0" width="367" height="997" frameX="-24" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0009" x="3478" y="0" width="363" height="997" frameX="-27" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0010" x="0" y="997" width="358" height="997" frameX="-30" frameY="-1" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0011" x="358" y="997" width="353" height="998" frameX="-33" frameY="0" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0012" x="711" y="997" width="348" height="998" frameX="-36" frameY="0" frameWidth="406" frameHeight="998"/>
-	<SubTexture name="Idle0013" x="1059" y="997" width="343" height="998" frameX="-39" frameY="0" frameWidth="406" frameHeight="998"/>
+	<SubTexture name="AcesHouseIdle0000" x="0" y="0" width="381" height="901" frameX="0" frameY="-37" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0001" x="381" y="0" width="378" height="904" frameX="-2" frameY="-34" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0002" x="0" y="901" width="376" height="907" frameX="-4" frameY="-31" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0003" x="759" y="0" width="373" height="910" frameX="-6" frameY="-28" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0004" x="376" y="904" width="370" height="913" frameX="-8" frameY="-25" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0005" x="0" y="1808" width="368" height="916" frameX="-10" frameY="-22" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0006" x="746" y="910" width="365" height="918" frameX="-12" frameY="-20" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0007" x="368" y="1817" width="363" height="921" frameX="-14" frameY="-17" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0008" x="0" y="2724" width="360" height="924" frameX="-16" frameY="-14" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0009" x="1111" y="910" width="358" height="927" frameX="-18" frameY="-11" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0010" x="731" y="1828" width="356" height="930" frameX="-19" frameY="-8" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0011" x="360" y="2738" width="353" height="933" frameX="-21" frameY="-5" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0012" x="1087" y="1837" width="352" height="935" frameX="-22" frameY="-3" frameWidth="381" frameHeight="938"/>
+	<SubTexture name="AcesHouseIdle0013" x="713" y="2758" width="349" height="938" frameX="-24" frameY="0" frameWidth="381" frameHeight="938"/>
 </TextureAtlas>

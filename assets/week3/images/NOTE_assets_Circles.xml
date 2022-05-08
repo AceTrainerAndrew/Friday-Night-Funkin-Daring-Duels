@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NOTE_assets_Circles.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="black0000" x="0" y="0" width="164" height="158"/>
+	<SubTexture name="end hold black0000" x="164" y="0" width="50" height="64"/>
+	<SubTexture name="piece hold black0000" x="214" y="0" width="50" height="44"/>
+	<SubTexture name="blueee0000" x="0" y="0" width="164" height="158"/>
+	<SubTexture name="yel confirm0000" x="264" y="0" width="244" height="237"/>
+	<SubTexture name="yel confirm0001" x="0" y="237" width="244" height="237"/>
+	<SubTexture name="yel confirm0002" x="244" y="237" width="221" height="214" frameX="-16" frameY="-10" frameWidth="244" frameHeight="237"/>
+	<SubTexture name="yel confirm0003" x="244" y="237" width="221" height="214" frameX="-16" frameY="-10" frameWidth="244" frameHeight="237"/>
+</TextureAtlas>

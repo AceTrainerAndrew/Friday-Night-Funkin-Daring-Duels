@@ -26,13 +26,14 @@ class StoryMenuState extends MusicBeatState
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
 		/*['Bopeebo', 'Fresh', 'Dad Battle'],
-		['outage', 'South', "Monster"],
 		['Pico', 'Philly Nice', "Blammed"],
 		['Satin Panties', "High", "Milf"],
 		['Cocoa', 'Eggnog', 'Winter Horrorland'],
 	*/	['blade-trap', 'long-wired-brawl', 'scythe','waterstream'],
 	//	['bopeebo-old','test', 'agoti-but-ace','conflict','wavedashing'],
 	//	['aceless','danger']
+		['outage','kaboom', "aflame"]
+
 	];
 	var curDifficulty:Int = 1;
 
@@ -46,6 +47,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 	*/	['senpai', 'bf', 'gf'],
+		['spooky', 'bf', 'gf']
 	//	['', 'bf', 'gf'],
 	//	['senpai', 'bf', 'gf']
 	];
@@ -58,6 +60,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 	*/	"Crowned",
+		"Monster Shredder"
 	//	"THE REST IS IN FREEPLAY",
 	//	"Christmas Of 2021"
 	];

@@ -11,20 +11,14 @@ class BackgroundLuna extends FlxSprite
 
 		frames = Paths.getSparrowAtlas("weeb/Luna",'week2');
 		//animation.addByIndices('Symbol', 'Luna', [0], "", 0, false);
-		animation.addByIndices('Idle', 'Idle', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, true);
-		animation.play('Idle', true);
+		animation.addByIndices('Idle', 'AcesHouseIdle', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
 		antialiasing = true;
 	}
 
-	//var danceDir:Bool = false;
+	var danceDir:Bool = false;
 
 	public function dance():Void
 	{
-		//danceDir = !danceDir;
-
-		//if (danceDir)
 			animation.play('Idle', true);
-		//else
-			//animation.play('danceLeft', true);
 	}
 }

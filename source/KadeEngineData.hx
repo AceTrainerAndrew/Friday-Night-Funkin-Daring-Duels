@@ -59,10 +59,10 @@ class KadeEngineData
 			
 			FlxG.save.data.watermark = false;
 
-		//if (FlxG.save.data.ghost == null)
-			//FlxG.save.data.ghost = true;
+		if (FlxG.save.data.ghost == null)
+			FlxG.save.data.ghost = true;
 			
-			FlxG.save.data.ghost = false;
+		//	FlxG.save.data.ghost = false;
 
 		if (FlxG.save.data.distractions == null)
 			FlxG.save.data.distractions = true;

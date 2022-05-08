@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="firebar.png">
+	<!-- Created with Adobe Animate version 22.0.4.185 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="eight0000" x="0" y="0" width="149" height="749"/>
+	<SubTexture name="eleven0000" x="149" y="0" width="149" height="749"/>
+	<SubTexture name="five0000" x="298" y="0" width="149" height="749"/>
+	<SubTexture name="justfour0000" x="447" y="0" width="149" height="749"/>
+	<SubTexture name="fourteen0000" x="596" y="0" width="149" height="749"/>
+	<SubTexture name="nine0000" x="745" y="0" width="149" height="749"/>
+	<SubTexture name="one0000" x="894" y="0" width="149" height="749"/>
+	<SubTexture name="seven0000" x="1043" y="0" width="149" height="749"/>
+	<SubTexture name="six0000" x="1192" y="0" width="149" height="749"/>
+	<SubTexture name="ten0000" x="1341" y="0" width="149" height="749"/>
+	<SubTexture name="thirteen0000" x="1490" y="0" width="149" height="749"/>
+	<SubTexture name="three0000" x="1639" y="0" width="149" height="749"/>
+	<SubTexture name="twelve0000" x="1788" y="0" width="149" height="749"/>
+	<SubTexture name="two0000" x="0" y="749" width="149" height="749"/>
+	<SubTexture name="zero0000" x="149" y="749" width="149" height="749"/>
+</TextureAtlas>

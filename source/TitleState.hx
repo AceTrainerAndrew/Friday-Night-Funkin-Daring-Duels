@@ -188,10 +188,13 @@ class TitleState extends MusicBeatState
 		//gfDance.animation.addByIndices('Symbol 2', 'Symbol 2', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, true);
 		//gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		
-		gfDance = new FlxSprite(-500, -200);
-		gfDance.frames = Paths.getSparrowAtlas('TitleBG');
+		//week 2 title screen - gfDance = new FlxSprite(-500, -200);
+		
+		gfDance = new FlxSprite(-90, 0);
+		
+		gfDance.frames = Paths.getSparrowAtlas('DaringDuels_Week3_TitleScreen');
 		gfDance.antialiasing = true;
-		gfDance.animation.addByPrefix('danceRight', 'TitleBG', 24, true);
+		gfDance.animation.addByPrefix('danceRight', 'BG', 24, true);
 		gfDance.animation.play('danceRight');
 		gfDance.updateHitbox();
 		add(gfDance);
@@ -222,7 +225,7 @@ class TitleState extends MusicBeatState
 		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		credGroup.add(blackScreen);
 
-		credTextShit = new Alphabet(0, 0, "AceTrainerAndrew\nKadedev\nBigNinjaKai\nZ11Gaming", true);
+		credTextShit = new Alphabet(0, 0, "AceTrainerAndrew\nKadedev\nBigNinjaKai\nZ11Gaming\nJDST", true);
 		credTextShit.screenCenter();
 
 		// credTextShit.alignment = CENTER;

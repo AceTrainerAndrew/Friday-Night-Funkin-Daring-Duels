@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="board.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Appear0000" x="0" y="0" width="283" height="79" frameX="0" frameY="0" frameWidth="291" frameHeight="147"/>
+	<SubTexture name="Appear0001" x="283" y="0" width="282" height="91" frameX="-3" frameY="-5" frameWidth="291" frameHeight="147"/>
+	<SubTexture name="Appear0002" x="565" y="0" width="281" height="103" frameX="-6" frameY="-10" frameWidth="291" frameHeight="147"/>
+	<SubTexture name="Appear0003" x="0" y="103" width="279" height="116" frameX="-10" frameY="-14" frameWidth="291" frameHeight="147"/>
+	<SubTexture name="Appear0004" x="279" y="103" width="278" height="129" frameX="-13" frameY="-18" frameWidth="291" frameHeight="147"/>
+	<SubTexture name="Fall0000" x="557" y="103" width="294" height="226" frameX="0" frameY="0" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0001" x="0" y="329" width="283" height="210" frameX="-3" frameY="-95" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0002" x="283" y="329" width="271" height="194" frameX="-6" frameY="-190" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0003" x="554" y="329" width="259" height="183" frameX="-9" frameY="-286" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0004" x="0" y="539" width="259" height="175" frameX="-9" frameY="-381" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0005" x="259" y="539" width="268" height="171" frameX="-9" frameY="-472" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0006" x="527" y="539" width="276" height="169" frameX="-9" frameY="-562" frameWidth="294" frameHeight="828"/>
+	<SubTexture name="Fall0007" x="0" y="714" width="294" height="175" frameX="0" frameY="-653" frameWidth="294" frameHeight="828"/>
+</TextureAtlas>

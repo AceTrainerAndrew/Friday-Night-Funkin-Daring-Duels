@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="Ace_Defeat.png">
-	<!-- Created with Adobe Animate version 21.0.9.42677 -->
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="Ace DEFEAT0000" x="0" y="0" width="314" height="667" frameX="0" frameY="-11" frameWidth="452" frameHeight="686"/>
 	<SubTexture name="Ace DEFEAT0001" x="314" y="0" width="323" height="663" frameX="0" frameY="-15" frameWidth="452" frameHeight="686"/>

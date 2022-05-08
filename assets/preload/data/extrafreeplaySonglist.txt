@@ -1,2 +1,5 @@
+wavedashing:fox:0
 agoti-but-ace:ace:2
 conflict:z11:2
+danger-but-ace:ace:2
+crucify:luna:0

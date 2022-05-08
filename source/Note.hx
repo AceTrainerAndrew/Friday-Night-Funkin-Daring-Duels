@@ -101,8 +101,8 @@ class Note extends FlxSprite
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
 				case 'ace':
-						frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets','week2');
-						var fuckingSussy = Paths.getSparrowAtlas('EmeraldArrows');
+						frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets2','week2');
+						var fuckingSussy = Paths.getSparrowAtlas('PumpkinNote');
 						for(amogus in fuckingSussy.frames)
 							{
 								this.frames.pushFrame(amogus);
@@ -112,11 +112,11 @@ class Note extends FlxSprite
 						{
 							case 2:
 							{
-								frames = Paths.getSparrowAtlas('EmeraldArrows');
-								animation.addByPrefix('greenScroll', 'NewEmerald');
-								animation.addByPrefix('redScroll', 'NewEmerald');
-								animation.addByPrefix('blueScroll', 'NewEmerald');
-								animation.addByPrefix('purpleScroll', 'NewEmerald');
+								frames = Paths.getSparrowAtlas('PumpkinNote');
+								animation.addByPrefix('greenScroll', 'Note');
+								animation.addByPrefix('redScroll', 'Note');
+								animation.addByPrefix('blueScroll', 'Note');
+								animation.addByPrefix('purpleScroll', 'Note');
  
 /*								animation.addByPrefix('purpleholdend', 'purple fire');
 								animation.addByPrefix('greenholdend', 'green fire');
@@ -134,21 +134,76 @@ class Note extends FlxSprite
 							}
 							default:
 							{
-								frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets','week2');
-								animation.addByPrefix('greenScroll', 'green0');
-								animation.addByPrefix('redScroll', 'red0');
-								animation.addByPrefix('blueScroll', 'blue0');
-								animation.addByPrefix('purpleScroll', 'purple0');
+								frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets2','week2');
+								animation.addByPrefix('greenScroll', 'black');
+								animation.addByPrefix('redScroll', 'black');
+								animation.addByPrefix('blueScroll', 'black');
+								animation.addByPrefix('purpleScroll', 'black');
  
-								animation.addByPrefix('purpleholdend', 'pruple end hold');
-								animation.addByPrefix('greenholdend', 'green hold end');
-								animation.addByPrefix('redholdend', 'red hold end');
-								animation.addByPrefix('blueholdend', 'blue hold end');
+								animation.addByPrefix('purpleholdend', 'end hold black');
+								animation.addByPrefix('greenholdend', 'end hold black');
+								animation.addByPrefix('redholdend', 'end hold black');
+								animation.addByPrefix('blueholdend', 'end hold black');
  
-								animation.addByPrefix('purplehold', 'purple hold piece');
-								animation.addByPrefix('greenhold', 'green hold piece');
-								animation.addByPrefix('redhold', 'red hold piece');
-								animation.addByPrefix('bluehold', 'blue hold piece');
+								animation.addByPrefix('purplehold', 'piece hold black');
+								animation.addByPrefix('greenhold', 'piece hold black');
+								animation.addByPrefix('redhold', 'piece hold black');
+								animation.addByPrefix('bluehold', 'piece hold black');
+ 
+								setGraphicSize(Std.int(width * 0.7));
+								updateHitbox();
+								antialiasing = true;
+							}
+						}
+					case 'flame':
+						
+/*						var fuckingSussy = Paths.getSparrowAtlas('PumpkinNote');
+						for(amogus in fuckingSussy.frames)
+							{
+								this.frames.pushFrame(amogus);
+							} 
+*/ 
+						switch(noteType)
+						{
+/*							case 2:
+							{
+								frames = Paths.getSparrowAtlas('PumpkinNote');
+								animation.addByPrefix('greenScroll', 'Note');
+								animation.addByPrefix('redScroll', 'Note');
+								animation.addByPrefix('blueScroll', 'Note');
+								animation.addByPrefix('purpleScroll', 'Note');
+ 
+/*								animation.addByPrefix('purpleholdend', 'purple fire');
+								animation.addByPrefix('greenholdend', 'green fire');
+								animation.addByPrefix('redholdend', 'red fire');
+								animation.addByPrefix('blueholdend', 'blue fire');
+ 
+								animation.addByPrefix('purplehold', 'purple fire');
+								animation.addByPrefix('greenhold', 'green fire');
+								animation.addByPrefix('redhold', 'red fire');
+								animation.addByPrefix('bluehold', 'blue fire');
+
+								setGraphicSize(Std.int(width * 0.35));
+								updateHitbox();
+								antialiasing = true;
+							}
+*/							default:
+							{
+								frames = Paths.getSparrowAtlas('NOTE_assets_Circles','week3');
+								animation.addByPrefix('greenScroll', 'black');
+								animation.addByPrefix('redScroll', 'black');
+								animation.addByPrefix('blueScroll', 'black');
+								animation.addByPrefix('purpleScroll', 'black');
+ 
+								animation.addByPrefix('purpleholdend', 'end hold black');
+								animation.addByPrefix('greenholdend', 'end hold black');
+								animation.addByPrefix('redholdend', 'end hold black');
+								animation.addByPrefix('blueholdend', 'end hold black');
+ 
+								animation.addByPrefix('purplehold', 'piece hold black');
+								animation.addByPrefix('greenhold', 'piece hold black');
+								animation.addByPrefix('redhold', 'piece hold black');
+								animation.addByPrefix('bluehold', 'piece hold black');
  
 								setGraphicSize(Std.int(width * 0.7));
 								updateHitbox();

@@ -11,6 +11,7 @@ class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
 	var ace:Boyfriend;
+	var pumpkintest:Boyfriend;
 
 	var camFollow:FlxObject;
 
@@ -44,6 +45,14 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.play(Paths.sound('fnf_loss_sfx-pixel'));
 		}
 		
+		if (PlayState.pumpkins > 5)
+		{
+			pumpkintest = new Boyfriend(350, 350, 'pumpkin-dead');
+			add(pumpkintest);
+			bf.alpha = 0;
+			FlxG.sound.play(Paths.sound('fnf_loss_sfx-pixel'));
+		}
+		
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);
 
@@ -56,6 +65,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
+		
 	}
 
 	override function update(elapsed:Float)
@@ -85,14 +95,27 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
-			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
-		}
+			if (PlayState.pumpkins > 5 || PlayState.SONG.player1 == 'bf-ace')
+			{
+				FlxG.sound.playMusic(Paths.sound('gameoverace'));
 
+			}
+			else
+			{
+				FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));				
+			}
+		}
+/*
+		else
+		{
+			FlxG.sound.playMusic(Paths.sound('gameoverace'));
+		}
+		
 		if (FlxG.sound.music.playing)
 		{
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
-	}
+*/	}
 
 	override function beatHit()
 	{
@@ -109,7 +132,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			isEnding = true;
 			bf.playAnim('deathConfirm', true);
-			if (bf.alpha == 0) ace.playAnim('deathConfirm', true);
+			if (bf.alpha == 0 && PlayState.SONG.player1 == 'bf-ace') ace.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music('gameOverEnd' + stageSuffix));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)

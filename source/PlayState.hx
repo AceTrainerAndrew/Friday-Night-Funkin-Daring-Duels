@@ -138,6 +138,9 @@ class PlayState extends MusicBeatState
 	public var strumLine:FlxSprite;
 	private var curSection:Int = 0;
 	
+	var iconP1AngleTween:FlxTween;
+	var iconP2AngleTween:FlxTween;
+
 	var ace:Character;
 	var isace:Bool = false;
 	var isbf:Bool = false;
@@ -162,6 +165,7 @@ class PlayState extends MusicBeatState
 	public var health:Float = 1; //making public because sethealth doesnt work without it
 	private var combo:Int = 0;
 	public static var misses:Int = 0;
+	public static var pumpkins:Int = 0;
 	public static var campaignMisses:Int = 0;
 	public var accuracy:Float = 0.00;
 	private var accuracyDefault:Float = 0.00;
@@ -169,7 +173,7 @@ class PlayState extends MusicBeatState
 	private var totalNotesHitDefault:Float = 0;
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
-
+	public var songENDED:Bool = true;
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -181,6 +185,12 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon; //making these public again because i may be stupid
 	public var iconP2:HealthIcon; //what could go wrong?
 	public var camHUD:FlxCamera;
+	
+	//Week 2 Mechanic Bar
+	public var pumpkinbarOUTLINE:FlxSprite;
+	
+	//Week 3 Mechanic Bar
+	public var firebarOUTLINE:FlxSprite;
 
 	private var camGame:FlxCamera;
 	private var floatshit:Float = 0;
@@ -192,15 +202,23 @@ class PlayState extends MusicBeatState
 
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:bababooey B)'];
 
+	//week3
+	var bfDodging:Bool = false;
+	var bfCanDodge:Bool = false;
+	var bfDodgeTiming:Float = 0.22625;
+	var bfDodgeCooldown:Float = 0.1135;
+	var kb_attack_saw:FlxSprite;
+	var kb_attack_alert:FlxSprite;
+	
 	var halloweenBG:FlxSprite;
 	var aceBG:FlxSprite;
 	var aceBGEVIL:FlxSprite;
 	var isHalloween:Bool = false;
-
+	var woodboard:FlxSprite;
+	
 	var phillyCityLights:FlxTypedGroup<FlxSprite>;
 	var phillyTrain:FlxSprite;
 	var trainSound:FlxSound;
-	var emeraldgif = new Emeraldspr(575, 285);
 	var emeraldgif2:FlxSprite;
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
@@ -281,6 +299,7 @@ class PlayState extends MusicBeatState
 			goods = 0;
 		}
 		misses = 0;
+		pumpkins = 0;
 
 		repPresses = 0;
 		repReleases = 0;
@@ -292,7 +311,7 @@ class PlayState extends MusicBeatState
 		PlayStateChangeables.scrollSpeed = FlxG.save.data.scrollSpeed;
 		PlayStateChangeables.botPlay = FlxG.save.data.botplay;
 
-		islwb = (SONG.song.toLowerCase() == 'long-wired-brawl' || SONG.song.toLowerCase() == 'waterstream' || SONG.song.toLowerCase() == 'agoti-but-ace' || SONG.song.toLowerCase() == 'scythe' || SONG.song.toLowerCase() == 'corrupt' || SONG.song.toLowerCase() == 'waterstream'); // my ass
+		islwb = (SONG.song.toLowerCase() == 'long-wired-brawl' || SONG.song.toLowerCase() == 'waterstream' || SONG.song.toLowerCase() == 'agoti-but-ace' || SONG.song.toLowerCase() == 'scythe' || SONG.song.toLowerCase() == 'danger-but-ace'); // my ass
 		minusHealth = false; 
 
 		// pre lowercasing the song name (create)
@@ -409,7 +428,7 @@ class PlayState extends MusicBeatState
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + PlayStateChangeables.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale + '\nBotPlay : ' + PlayStateChangeables.botPlay);
 	
-		//dialogue shit
+		//dialoguedialogue shit
 		switch (songLowercase)
 		{
 			case 'tutorial':
@@ -444,14 +463,37 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('corrupt/corruptDialogue'));
 			case 'scythe':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('scythe/scytheDialogue'));
-			case 'outage':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('outage/outageDialogue'));
+			//case 'outage':
+				//dialogue = CoolUtil.coolTextFile(Paths.txt('outage/outageDialogue'));
 			case 'waterstream':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('waterstream/waterstreamDialogue'));
 			case 'danger':
 				exDad = true;
 			case 'final-destination':
 				exDad3 = true;
+			case 'aflame':
+				{
+					woodboard = new FlxSprite();
+					woodboard.frames = Paths.getSparrowAtlas('board', 'week3');
+					woodboard.animation.addByPrefix('appear', 'Appear', 24, false);
+					woodboard.animation.addByPrefix('fall', 'Fall', 24, false);
+					woodboard.scale.set(1.5, 1.5);
+					woodboard.screenCenter();
+					woodboard.x += 200;
+					woodboard.y -= 200;
+		
+					
+					//Alert!
+					kb_attack_alert = new FlxSprite();
+					kb_attack_alert.frames = Paths.getSparrowAtlas('attack_alert_NEW');
+					kb_attack_alert.animation.addByPrefix('alert','kb_attack_animation_alert-single', 24, false);	
+					kb_attack_alert.antialiasing = true;
+					kb_attack_alert.setGraphicSize(Std.int(kb_attack_alert.width * 1.5));
+					kb_attack_alert.cameras = [camHUD];
+					kb_attack_alert.x = FlxG.width - 700;
+					//kb_attack_alert.y = 205;
+					kb_attack_alert.screenCenter();
+				}
 		}
 
 		//defaults if no stage was found in chart
@@ -466,7 +508,8 @@ class PlayState extends MusicBeatState
 				case 4: stageCheck = 'limo';
 				case 5: if (songLowercase == 'winter-horrorland') {stageCheck = 'mallEvil';} else {stageCheck = 'mall';}
 				*/
-				case 1: if (songLowercase == 'scythe' || songLowercase == 'waterstream') {stageCheck = 'AcesHouseEvil';} else {stageCheck = 'AcesHouse';}
+				case 1: if (songLowercase == 'scythe' || songLowercase == 'waterstream') {stageCheck = 'AcesHouseEvil'; } else {stageCheck = 'AcesHouse';}
+				case 2: if (songLowercase == 'aflame') {stageCheck = 'scary';} else {stageCheck = 'halloween';}
 				//i should check if its stage (but this is when none is found in chart anyway)
 			}
 		} else {stageCheck = SONG.stage;}
@@ -478,7 +521,7 @@ class PlayState extends MusicBeatState
 				curStage = 'spooky';
 				halloweenLevel = true;
 
-				var hallowTex = Paths.getSparrowAtlas('halloween_bg','week2');
+				var hallowTex = Paths.getSparrowAtlas('halloween_bg','week3');
 
 				halloweenBG = new FlxSprite(-200, -100);
 				halloweenBG.frames = hallowTex;
@@ -495,7 +538,7 @@ class PlayState extends MusicBeatState
 			{
 				curStage = 'scary';
 				
-				var hallowTex = Paths.getSparrowAtlas('scary_bg','week2');
+				var hallowTex = Paths.getSparrowAtlas('scary_bg','week3');
 
 				halloweenBG = new FlxSprite(-200, -100);
 				halloweenBG.frames = hallowTex;
@@ -837,6 +880,7 @@ class PlayState extends MusicBeatState
 					}
 			}
 */		
+			
 				var bgSky = new FlxSprite().loadGraphic(Paths.image('weeb/weebSky','week2'));
 				var widShit = Std.int(bgSky.width * 6);
 				
@@ -857,11 +901,9 @@ class PlayState extends MusicBeatState
 							//bgGirls.getScared();
 							
 						//	BGLuna = new BackgroundLuna(-150, 400);
-							BGLuna = new BackgroundLuna(-200, 0);
-							
+							BGLuna = new BackgroundLuna(-200, 50);							
 							BGLuna.setGraphicSize(Std.int(BGLuna.width * 0.6));
 							add(BGLuna);
-							BGLuna.dance();
 					}
 			}			
 			case 'AcesHouseEvil':
@@ -947,7 +989,10 @@ class PlayState extends MusicBeatState
 					}
 			}
 */
-				var bgSky = new FlxSprite().loadGraphic(Paths.image('weeb/weebSky','week2'));
+			
+
+				var bgSky = new FlxSprite(-350,500).loadGraphic(Paths.image('weeb/weebSky','week2'));
+				var bgSky2 = new FlxSprite(0,-750).loadGraphic(Paths.image('weeb/aceSkyEvil','week2'));
 				var widShit = Std.int(bgSky.width * 6);
 							
 				var hallowTex = Paths.getSparrowAtlas('weeb/AcesHouseEVIL','week2');
@@ -959,8 +1004,11 @@ class PlayState extends MusicBeatState
 				aceBGEVIL.antialiasing = true;
 				add(aceBGEVIL);
 				
+				bgSky2.setGraphicSize(widShit+250);
 				aceBGEVIL.setGraphicSize(widShit);
 				aceBGEVIL.updateHitbox();
+				
+				add(bgSky2);
 			}
 					
 /*			case 'schoolEvil':
@@ -1248,7 +1296,7 @@ class PlayState extends MusicBeatState
 				//x: 770,
 				//y: 450,
 			case "cb":
-				dad.y += 90;
+				dad.y += 175;
 				
 				var evilTrail = new FlxTrail(dad, null, 4, 12, 0.25, 0.069);
 				evilTrail.framesEnabled = true;
@@ -1257,12 +1305,20 @@ class PlayState extends MusicBeatState
 			case "fox":
 				dad.y += 375;
 			case "andrew":
-				dad.y += 350;
+				dad.y += 375;
+			case "andrew-corrupt":
+				dad.y += 405;
+
+				var evilTrail = new FlxTrail(dad, null, 4, 12, 0.25, 0.069);
+				evilTrail.framesEnabled = true;
+				evilTrail.color = 0xFF000000;
+				add(evilTrail);
+				
 			case "acespiritduo":
 				dad.y += 50;
 			case "luna":
-				dad.y -= 50;
-				dad.x += 10;
+				dad.y += 60;
+				dad.x += 225;
 			case 'luigi':
 				camPos.x += 600;
 				dad.y += 300;
@@ -1272,10 +1328,10 @@ class PlayState extends MusicBeatState
 				//add(evilTrail);
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'luna-duo':
-				dad.x -= 600;
-				dad.y -= 550;
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-				add(evilTrail);
+				dad.x -= 150;
+				dad.y -= 150;
+				//var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
+				//add(evilTrail);
 				dad.y += Math.sin(floatshit);
 			case 'spongeballer':
 				dad.x -= 600;
@@ -1293,7 +1349,7 @@ class PlayState extends MusicBeatState
 
 		
 		//boyfriend = new Boyfriend(770, 450, SONG.player1);
-		if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'vampirerays')
+	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'test' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'smol' || songLowercase == 'deathmatch')
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 		else
 		boyfriend = new Boyfriend(770, 450, CharacterState.selectedChar);
@@ -1378,7 +1434,7 @@ class PlayState extends MusicBeatState
 		
 		ace = new Character(150, 350, 'shadow-ace');
 		
-if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase != 'execution' && songLowercase != 'vampirerays')
+if (songLowercase != 'conflict' && songLowercase != 'smol' && songLowercase != 'execution' && songLowercase != 'deathmatch' && songLowercase != 'blade-trap' && songLowercase != 'long-wired-brawl' && songLowercase != 'scythe' && songLowercase != 'waterstream')
 		add(gf);
 
 		// Shitty layering but whatev it works LOL
@@ -1483,7 +1539,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 				if (PlayStateChangeables.useDownscroll)
 					songName.y -= 3;
-				songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+				songName.setFormat(Paths.font("Tapestry-Regular"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 				songName.scrollFactor.set();
 				add(songName);
 				songName.cameras = [camHUD];
@@ -1495,7 +1551,62 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
-
+		
+		//Week 2 Mechanic 
+		if (songLowercase == 'waterstream' || songLowercase == 'long-wired-brawl' || songLowercase == 'blade-trap' || songLowercase == 'scythe')
+		{
+			pumpkinbarOUTLINE = new FlxSprite(FlxG.width * 0.87, FlxG.height - 750);
+			pumpkinbarOUTLINE.frames = Paths.getSparrowAtlas('PumpkinBar', 'week2');
+			
+			pumpkinbarOUTLINE.animation.addByPrefix('zero', 'PumpkinBar0', 24, false); // 0
+			pumpkinbarOUTLINE.animation.addByPrefix('one', 'PumpkinBar1', 24, false); // 1
+			pumpkinbarOUTLINE.animation.addByPrefix('two', 'PumpkinBar2', 24, false); // 2
+			pumpkinbarOUTLINE.animation.addByPrefix('three', 'PumpkinBar3', 24, false); // 3
+			pumpkinbarOUTLINE.animation.addByPrefix('four', 'PumpkinBar4', 24, false); // 4
+			pumpkinbarOUTLINE.animation.addByPrefix('five', 'PumpkinBar5', 24, false); // 5
+			
+			pumpkinbarOUTLINE.scale.x = 0.75;
+			pumpkinbarOUTLINE.scale.y = 0.75;
+			pumpkinbarOUTLINE.scrollFactor.set();
+			pumpkinbarOUTLINE.cameras = [camHUD];
+			
+			pumpkinbarOUTLINE.animation.play('zero');
+			
+			add(pumpkinbarOUTLINE);
+		}
+		
+		//Week 3 Mechanic 
+		if (songLowercase == 'aflame')
+		{
+			firebarOUTLINE = new FlxSprite(FlxG.width * 0.87, FlxG.height - 750);
+			firebarOUTLINE.frames = Paths.getSparrowAtlas('FireBar', 'week3');
+			
+			firebarOUTLINE.animation.addByPrefix('zero', 'zero', 24, false); // 0
+			firebarOUTLINE.animation.addByPrefix('one', 'one', 24, false); // 1
+			firebarOUTLINE.animation.addByPrefix('two', 'two', 24, false); // 2
+			firebarOUTLINE.animation.addByPrefix('three', 'three', 24, false); // 3
+			firebarOUTLINE.animation.addByPrefix('justfour', 'justfour', 24, false); // 4
+			firebarOUTLINE.animation.addByPrefix('five', 'five', 24, false); // 5
+			firebarOUTLINE.animation.addByPrefix('six', 'six', 24, false);
+			firebarOUTLINE.animation.addByPrefix('seven', 'seven', 24, false);
+			firebarOUTLINE.animation.addByPrefix('eight', 'eight', 24, false);
+			firebarOUTLINE.animation.addByPrefix('nine', 'nine', 24, false);
+			firebarOUTLINE.animation.addByPrefix('ten', 'ten', 24, false);
+			firebarOUTLINE.animation.addByPrefix('eleven', 'eleven', 24, false);
+			firebarOUTLINE.animation.addByPrefix('twelve', 'twelve', 24, false);
+			firebarOUTLINE.animation.addByPrefix('thirteen', 'thirteen', 24, false);
+			firebarOUTLINE.animation.addByPrefix('fourteen', 'fourteen', 24, false);
+			
+			firebarOUTLINE.scale.x = 0.75;
+			firebarOUTLINE.scale.y = 0.75;
+			firebarOUTLINE.scrollFactor.set();
+			firebarOUTLINE.cameras = [camHUD];
+			
+			firebarOUTLINE.animation.play('zero');
+			
+			add(firebarOUTLINE);
+		}
+		
 		switch (dad.curCharacter)
 		{
 		  case 'ace':
@@ -1601,8 +1712,8 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		add(healthBar);
 	*/
 		// Add Kade Engine watermark
-		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
-		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " || " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
+		kadeEngineWatermark.setFormat(Paths.font("vcr"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);
 
@@ -1618,12 +1729,12 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 
 		scoreTxt.scrollFactor.set();
 		
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-
+		scoreTxt.setFormat(Paths.font("vcr"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		
 		add(scoreTxt);
 
 		replayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "REPLAY", 20);
-		replayTxt.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		replayTxt.setFormat(Paths.font("vcr"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		replayTxt.borderSize = 4;
 		replayTxt.borderQuality = 2;
 		replayTxt.scrollFactor.set();
@@ -1633,7 +1744,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		}
 		// Literally copy-paste of the above, fu
 		botPlayState = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (PlayStateChangeables.useDownscroll ? 100 : -100), 0, "BOTPLAY", 20);
-		botPlayState.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		botPlayState.setFormat(Paths.font("Tapestry-Regular"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		botPlayState.scrollFactor.set();
 		botPlayState.borderSize = 4;
 		botPlayState.borderQuality = 2;
@@ -1645,7 +1756,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		  
 
 		
-	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'acelistic' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'vampirerays')
+	if (songLowercase == 'monster' || songLowercase == 'conflict' || songLowercase == 'smol' || songLowercase == 'execution' || songLowercase == 'aceless' || songLowercase == 'vampirerays' || songLowercase == 'deathmatch')
 	{
 		iconP1 = new HealthIcon(SONG.player1, true);
 		add(iconP1);
@@ -1673,7 +1784,13 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-		if (FlxG.save.data.songPosition)
+		
+/*	if (SONG.song == 'waterstream' || SONG.song == 'long-wired-brawl' || SONG.song == 'blade-trap' || SONG.song == 'scythe')
+		{
+			pumpkinbarOUTLINE.cameras = [camOVERLAY];
+			pumpkinbar.cameras = [camOVERLAY];
+		}
+*/		if (FlxG.save.data.songPosition)
 		{
 			songPosBG.cameras = [camHUD];
 			songPosBar.cameras = [camHUD];
@@ -1695,7 +1812,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		{
 			switch (StringTools.replace(curSong," ", "-").toLowerCase())
 			{
-				case "winter-horrorland":
+				case "scythe":
 					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 					add(blackScreen);
 					blackScreen.scrollFactor.set();
@@ -1704,9 +1821,9 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 					new FlxTimer().start(0.1, function(tmr:FlxTimer)
 					{
 						remove(blackScreen);
-						FlxG.sound.play(Paths.sound('Lights_Turn_On'));
-						camFollow.y = -2050;
-						camFollow.x += 200;
+						FlxG.sound.play(Paths.sound('owl'));
+						camFollow.y = -710;
+						camFollow.x += 0;
 						FlxG.camera.focusOn(camFollow.getPosition());
 						FlxG.camera.zoom = 1.5;
 
@@ -1730,10 +1847,10 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 					schoolIntro(doof);
 				case 'long-wired-brawl':
 					schoolIntro(doof);
-				case 'scythe':
-					schoolIntro(doof);
-				case 'outage':
-					schoolIntro(doof);
+				//case 'scythe':
+					//schoolIntro(doof);
+				//case 'outage':
+					//schoolIntro(doof);
 				case 'waterstream':
 					schoolIntro(doof);
 				default:
@@ -1755,6 +1872,21 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 		super.create();
 	}
 
+	function KBATTACK_ALERT(pointless:Bool = false):Void //For some reason, modchart doesn't like functions with no parameter? why? dunno.
+	{
+		if (!(SONG.song.toLowerCase() == "aflame")){
+			trace("Sawblade Alert Error, cannot use Termination functions outside Aflame.");
+		}
+		add(kb_attack_alert);
+		add(woodboard);
+		
+		woodboard.animation.play('appear');
+			
+		trace("DANGER!");
+		kb_attack_alert.animation.play('alert');
+		FlxG.sound.play(Paths.sound('alert'),0.3);
+	}
+	
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -1898,6 +2030,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 
 	function startCountdown():Void
 	{
+		songENDED = false;
 		inCutscene = false;
 
 		generateStaticArrows(0);
@@ -2035,6 +2168,8 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 
 	function startSong():Void
 	{
+		
+		bfCanDodge = true;
 		startingSong = false;
 		songStarted = true;
 		previousFrameTime = FlxG.game.ticks;
@@ -2074,7 +2209,7 @@ if (songLowercase != 'conflict' && songLowercase != 'acelistic' && songLowercase
 			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 			if (PlayStateChangeables.useDownscroll)
 				songName.y -= 3;
-			songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+			songName.setFormat(Paths.font("Tapestry-Regular"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 			songName.scrollFactor.set();
 			add(songName);
 			
@@ -2322,11 +2457,11 @@ for (songNotes in section.sectionNotes)
 							}
 						
 					case 'ace':
-						babyArrow.frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets','week2');
-						babyArrow.animation.addByPrefix('green', 'arrowUP');
-						babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-						babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-						babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+						babyArrow.frames = Paths.getSparrowAtlas('weeb/pixelUI/aceNOTE_assets2','week2');
+						babyArrow.animation.addByPrefix('green', 'black');
+						babyArrow.animation.addByPrefix('blue', 'black');
+						babyArrow.animation.addByPrefix('purple', 'black');
+						babyArrow.animation.addByPrefix('red', 'black');
 		
 						babyArrow.antialiasing = true;
 						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
@@ -2335,24 +2470,58 @@ for (songNotes in section.sectionNotes)
 						{
 							case 0:
 								babyArrow.x += Note.swagWidth * 0;
-								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-								babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'black', 24, false);
 							case 1:
 								babyArrow.x += Note.swagWidth * 1;
-								babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-								babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'black', 24, false);
 							case 2:
 								babyArrow.x += Note.swagWidth * 2;
-								babyArrow.animation.addByPrefix('static', 'arrowUP');
-								babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'black', 24, false);
 							case 3:
 								babyArrow.x += Note.swagWidth * 3;
-								babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-								babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-								babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'black', 24, false);
+							}
+							
+					case 'flame':
+						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_Circles','week3');
+						babyArrow.animation.addByPrefix('green', 'black');
+						babyArrow.animation.addByPrefix('blue', 'black');
+						babyArrow.animation.addByPrefix('purple', 'black');
+						babyArrow.animation.addByPrefix('red', 'black');
+		
+						babyArrow.antialiasing = true;
+						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+		
+						switch (Math.abs(i))
+						{
+							case 0:
+								babyArrow.x += Note.swagWidth * 0;
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'yel confirm', 24, false);
+							case 1:
+								babyArrow.x += Note.swagWidth * 1;
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'yel confirm', 24, false);
+							case 2:
+								babyArrow.x += Note.swagWidth * 2;
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'yel confirm', 24, false);
+							case 3:
+								babyArrow.x += Note.swagWidth * 3;
+								babyArrow.animation.addByPrefix('static', 'black');
+								babyArrow.animation.addByPrefix('pressed', 'black', 24, false);
+								babyArrow.animation.addByPrefix('confirm', 'yel confirm', 24, false);
 							}
 	
 					default:
@@ -2505,15 +2674,103 @@ for (songNotes in section.sectionNotes)
 	override public function update(elapsed:Float)
 	{
 		floatshit += 0.05;
+		
 		#if !debug
 		perfectMode = false;
 		#end
+	
+		//#if debug 
+		//health = 1.5;
+		//#end
+		
+		trace(pumpkins);
+		
+		/*if (pumpkins > 1)
+		{
+		pumpkinbar.percent = (pumpkins * 0.07)*100;
+		}
+		*/
 
+	if (SONG.song == 'Waterstream' || SONG.song == 'long-wired-brawl' || SONG.song == 'blade-trap' || SONG.song == 'scythe')
+	{
+		switch (pumpkins)
+		{
+			case 1:
+				pumpkinbarOUTLINE.animation.play('one');
+			case 2:
+				pumpkinbarOUTLINE.animation.play('two');
+			case 3:
+				pumpkinbarOUTLINE.animation.play('three');
+			case 4:
+				pumpkinbarOUTLINE.animation.play('four');
+			case 5:
+				pumpkinbarOUTLINE.animation.play('five');
+			case 6:
+				health = 0;
+			default: 
+				pumpkinbarOUTLINE.animation.play('zero');
+		}
+	}
+	
+	if (SONG.song == 'Aflame')
+	{
+		switch (misses)
+		{
+			case 1:
+				firebarOUTLINE.animation.play('one');
+			case 2:
+				firebarOUTLINE.animation.play('two');
+			case 3:
+				firebarOUTLINE.animation.play('three');
+			case 4:
+				firebarOUTLINE.animation.play('justfour');
+			case 5:
+				firebarOUTLINE.animation.play('five');
+			case 6:
+				firebarOUTLINE.animation.play('six');
+			case 7:
+				firebarOUTLINE.animation.play('seven');
+			case 8:
+				firebarOUTLINE.animation.play('eight');
+			case 9:
+				firebarOUTLINE.animation.play('nine');
+			case 10:
+				firebarOUTLINE.animation.play('ten');
+			case 11:
+				firebarOUTLINE.animation.play('eleven');
+			case 12:
+				firebarOUTLINE.animation.play('twelve');
+			case 13:
+				firebarOUTLINE.animation.play('thirteen');
+			case 14:
+				firebarOUTLINE.animation.play('fourteen');
+			case 15:
+				health = 0;
+			case 16:
+				health = 0;
+			case 17:
+				health = 0;
+			case 18:
+				health = 0;
+			case 19:
+				health = 0;
+			default: 
+				firebarOUTLINE.animation.play('zero');
+		}
+	}
+		
 		if (islwb && storyDifficulty > 0 && minusHealth && health > 0.05) // shitty regen effect
 		{
 			if (health > 0)
 			{
-				health -= 0.00075;
+				if (SONG.song.toLowerCase() == 'danger-but-ace')
+				{
+					health -= 0.003;
+				}
+				else
+				{
+				health -= 0.001;
+				}
 			}
 		}
 		
@@ -2925,7 +3182,7 @@ for (songNotes in section.sectionNotes)
 					case 'ace':
 						camFollow.y = dad.getMidpoint().y - 100;
 						camFollow.x = dad.getMidpoint().x + 75;
-						FlxTween.tween(FlxG.camera, {zoom: 1.1}, (Conductor.stepCrochet * 4 / 2000), {ease: FlxEase.elasticInOut});
+						FlxTween.tween(FlxG.camera, {zoom: 1.35}, (Conductor.stepCrochet * 4 / 2000), {ease: FlxEase.elasticInOut});
 					case 'ace-christmas':
 						camFollow.y = dad.getMidpoint().y - 100;
 						camFollow.x = dad.getMidpoint().x + 75;
@@ -3020,7 +3277,27 @@ for (songNotes in section.sectionNotes)
 			}
 		}
 		
-		if (curSong == 'Waterstream')
+		if (curSong == 'Deathmatch')
+		{
+			switch (curStep)
+			{
+				case 768:
+				remove(boyfriend);
+				boyfriend = new Boyfriend(0,0,'pico');
+			}
+		}
+		
+		if (curSong == 'Aflame' && songENDED == false)
+		{
+			switch (curStep)
+			{
+				case 10:
+					KBATTACK_ALERT();
+				case 14:
+					KBATTACK();
+			}
+		}
+		/* if (curSong == 'Waterstream')
 			{
 				switch (curStep)
 				{
@@ -3090,7 +3367,7 @@ for (songNotes in section.sectionNotes)
 						});
 				}
 			}
-		
+		*/
 		if (curSong == 'agoti-but-ace')
 		{
 			switch (curStep)
@@ -3265,7 +3542,7 @@ for (songNotes in section.sectionNotes)
 
 						var altAnim:String = "";
 						
-						if (SONG.song.toLowerCase() == 'long-wired-brawl' || SONG.song.toLowerCase() == 'waterstream' || SONG.song == 'agoti-but-ace' || SONG.song.toLowerCase() == 'scythe' || SONG.song.toLowerCase() == 'corrupt')
+						if (SONG.song == 'long-wired-brawl' || SONG.song.toLowerCase() == 'waterstream' || SONG.song == 'agoti-but-ace' || SONG.song == 'scythe' || SONG.song == 'corrupt' || SONG.song.toLowerCase() == 'danger-but-ace')
 
 						minusHealth = true; // i shat my pants
 
@@ -3508,6 +3785,8 @@ for (songNotes in section.sectionNotes)
 
 	function endSong():Void
 	{
+		songENDED = true;
+		
 		if (useVideo)
 			{
 				GlobalVideo.get().stop();
@@ -3989,6 +4268,47 @@ for (songNotes in section.sectionNotes)
 			}
 		}
 
+		
+		function dodgeTimingOverride(newValue:Float = 0.22625):Void
+	{
+		bfDodgeTiming = newValue;
+	}
+
+	function dodgeCooldownOverride(newValue:Float = 0.1135):Void
+	{
+		bfDodgeCooldown = newValue;
+	}	
+	
+	function KBATTACK(state:Bool = false, soundToPlay:String = 'attack'):Void
+	{
+		remove(kb_attack_alert);
+
+		
+		if(!(SONG.song.toLowerCase() == "aflame")){
+			
+			trace("Fire Attack Error, cannot use Termination functions outside Aflame");
+		}
+		trace("HE ATACC!");
+		
+			FlxG.sound.play(Paths.sound('plank'), 0.35);
+			
+			woodboard.animation.play('fall');
+			//Play saw attack animation
+
+			//Slight delay for animation. Yeah I know I should be doing this using curStep and curBeat and what not, but I'm lazy -Haz
+			new FlxTimer().start(0.09, function(tmr:FlxTimer)
+			{
+				if(!bfDodging){
+					//MURDER THE BITCH!
+					health -= 0.5;
+				}
+			});
+			new FlxTimer().start(1, function(tmr:FlxTimer)
+			{
+				remove(woodboard);
+			});
+	}
+
 	public function NearlyEquals(value1:Float, value2:Float, unimportantDifference:Float = 10):Bool
 		{
 			return Math.abs(FlxMath.roundDecimal(value1, 1) - FlxMath.roundDecimal(value2, 1)) < unimportantDifference;
@@ -4001,6 +4321,42 @@ for (songNotes in section.sectionNotes)
 
 		private function keyShit():Void // I've invested in emma stocks
 			{
+				if(SONG.song.toLowerCase() == "aflame"){
+			//Dodge code, yes it's bad but oh well. -Haz
+			//var dodgeButton = controls.ACCEPT; //I have no idea how to add custom controls so fuck it. -Haz
+
+			if(FlxG.keys.justPressed.SPACE)
+				trace('butttonpressed');
+
+			if(FlxG.keys.justPressed.SPACE && !bfDodging && bfCanDodge){
+				trace('DODGE START!');
+				bfDodging = true;
+				bfCanDodge = false;
+
+				boyfriend.playAnim('dodge');
+
+
+				//Wait, then set bfDodging back to false. -Haz
+				//V1.2 - Timer lasts a bit longer (by 0.00225)
+				//new FlxTimer().start(0.22625, function(tmr:FlxTimer) 		//COMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+				//new FlxTimer().start(0.15, function(tmr:FlxTimer)			//UNCOMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+				new FlxTimer().start(bfDodgeTiming, function(tmr:FlxTimer) 	//COMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+				{
+					bfDodging=false;
+					boyfriend.dance(); //V1.3 = This forces the animation to end when you are no longer safe as the animation keeps misleading people.
+					trace('DODGE END!');
+					//Cooldown timer so you can't keep spamming it.
+					//V1.3 = Incremented this by a little (0.005)
+					//new FlxTimer().start(0.1135, function(tmr:FlxTimer) 	//COMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+					//new FlxTimer().start(0.1, function(tmr:FlxTimer) 		//UNCOMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+					new FlxTimer().start(bfDodgeCooldown, function(tmr:FlxTimer) 	//COMMENT THIS IF YOU WANT TO USE DOUBLE SAW VARIATIONS!
+					{
+						bfCanDodge=true;
+						trace('DODGE RECHARGED!');
+					});
+				});
+			}
+		}
 				// control arrays, order L D R U
 				var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
 				var pressArray:Array<Bool> = [
@@ -4567,13 +4923,26 @@ for (songNotes in section.sectionNotes)
 
 	function emeraldhit():Void
 	{
-		//var emeraldgif = new Emeraldspr(575, 285);
-		emeraldgif2 = new Emeraldspr(575, 285);
-		health -= 0.5;
-		FlxG.sound.play(Paths.sound('Glass-Break'));
+		var emeraldgif = new Emeraldspr(585, 325);
+		emeraldgif2 = new Emeraldspr( -770, -450);
+	//	health -= 0.5;
+		misses += 1;
+		
+		//if (SONG.song.toLowerCase == 'waterstream' || SONG.song.toLowerCase == 'long-wired-brawl' || SONG.song.toLowerCase == 'blade-trap' || SONG.song.toLowerCase == 'scythe')
+		//{
+		if (pumpkins < 6)
+		{
+			pumpkins += 1;
+		}
+		//}
+		
+		FlxG.sound.play(Paths.sound('thunder_1'));
+		emeraldgif.animation.addByIndices('Emerald', 'Fire', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, true);
 		
 		add(emeraldgif);
-		emeraldgif.dance();
+		emeraldgif.animation.play('Emerald', true);
+
+		//emeraldgif.dance();
 		
 		gf.playAnim('scared', true);
 		//boyfriend.playAnim('emerald', true);
@@ -4774,13 +5143,8 @@ for (songNotes in section.sectionNotes)
 					{
 						dad.playAnim("singLEFT-alt", true);
 					}
-				case 242:
-					{
-						dad.playAnim("singLEFT-alt", true);
-					}
 				}
 			}
-		
 		#end
 
 		// yes this updates every step.
@@ -4827,7 +5191,22 @@ for (songNotes in section.sectionNotes)
 		{
 			notes.sort(FlxSort.byY, (PlayStateChangeables.useDownscroll ? FlxSort.ASCENDING : FlxSort.DESCENDING));
 		}
+		
+		if (SONG.song == 'blade-trap' || SONG.song == 'long-wired-brawl')
+		{
+			BGLuna.dance();
+			trace('hitig');
+		}
+		
+		//icon tweens
 
+			iconP1AngleTween = FlxTween.tween(iconP1, {angle: -15}, (Conductor.crochet / 5000), {onComplete: function(twn:FlxTween){
+			iconP1AngleTween = FlxTween.tween(iconP1, {angle: 0}, (Conductor.crochet / 5000));
+		}});
+			iconP2AngleTween = FlxTween.tween(iconP2, {angle: 15}, (Conductor.crochet / 5000), {onComplete: function(twn:FlxTween){
+			iconP2AngleTween = FlxTween.tween(iconP2, {angle: 0}, (Conductor.crochet / 5000));
+		}});
+		
 		#if windows
 		if (executeModchart && luaModchart != null)
 		{
@@ -4883,7 +5262,7 @@ for (songNotes in section.sectionNotes)
 				camHUD.zoom += 0.03;
 			}
 	
-			if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+			if (camZooming && curBeat % 4 == 0)
 			{
 				FlxG.camera.zoom += 0.015;
 				camHUD.zoom += 0.03;

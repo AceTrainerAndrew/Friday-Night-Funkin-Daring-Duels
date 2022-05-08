@@ -80,12 +80,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			*/case 'outage':
+			case 'outage':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('dialogueBox-pixel','week2');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'blade-trap','long-wired-brawl','scythe','waterstream':
+			*/case 'blade-trap','long-wired-brawl','scythe','waterstream':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/DialogueWeek6','week2');
 				box.animation.addByPrefix('ace', 'AceDialogue', 24, false);
